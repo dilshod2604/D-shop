@@ -7,7 +7,7 @@ import React from "react";
 const Navbar = () => {
   const pathName = usePathname();
   return (
-    <ul className="flex items-center  gap-x-[48px] text-black">
+    <ul className="flex items-center  gap-x-[48px] text-black max-w-lg:hidden">
       {links.map((link, index) => (
         <li key={index}>
           {pathName === link.href ? (
@@ -21,7 +21,7 @@ const Navbar = () => {
             <Link
               href={link.href}
               className="text-neutral-600 font-normal transition   "
-            > 
+            >
               {link.name}
             </Link>
           )}
