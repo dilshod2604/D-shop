@@ -1,5 +1,6 @@
 import React from "react";
 import Navbar from "../ui/Navbar";
+import SearchTrack from "../ui/SearchTrack";
 
 const Header = () => {
   return (
@@ -8,6 +9,7 @@ const Header = () => {
         <div className="flex items-start justify-between pt-5 pb-2 border-b border-neutral-400">
           <div className="flex items-center justify-center ">exclisive</div>
           <Navbar />
+          <SearchTrack />
         </div>
       </div>
     </header>
