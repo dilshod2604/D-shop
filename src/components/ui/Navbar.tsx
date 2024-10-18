@@ -7,7 +7,7 @@ import React from "react";
 const Navbar = () => {
   const pathName = usePathname();
   return (
-    <ul className="flex items-center  gap-x-[48px] text-black max-w-lg:hidden">
+    <ul className="flex items-center  gap-x-[48px] text-black max-lg:hidden">
       {links.map((link, index) => (
         <li key={index}>
           {pathName === link.href ? (
