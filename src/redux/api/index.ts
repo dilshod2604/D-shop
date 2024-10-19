@@ -5,7 +5,7 @@ import {
 } from "@reduxjs/toolkit/query/react";
 
 const BaseQquery = fetchBaseQuery({
-  baseUrl: process.env.API_URL,
+  baseUrl: "https://fakestoreapi.com/",
 });
 
 const baseQueryExtends: BaseQueryFn = async (arg, api, extraOptions) => {

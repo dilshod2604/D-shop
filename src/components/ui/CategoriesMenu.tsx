@@ -7,8 +7,8 @@ import React from "react";
 const CategoriesMenu = () => {
   return (
     <div className="flex flex-col gap-y-4 text-black  ">
-      <Select defaultValue={"Woman&apos;s Fashion"} />
-      <Select defaultValue={"Men&apos;s Fashion"} />
+      <Select defaultValue={"Woman's Fashion"} />
+      <Select defaultValue={"Men's Fashion"} />
 
       {sideBarLinks.map((link, index) => (
         <Link
