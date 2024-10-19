@@ -11,6 +11,7 @@ const Rating: FC<RatingProps> = ({ rating }) => {
   return (
     <div className="flex">
       <Rate allowHalf defaultValue={rating.rate} />
+     
     </div>
   );
 };

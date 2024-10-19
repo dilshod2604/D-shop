@@ -1,36 +1,57 @@
 "use client";
+import AddToCart from "@/components/ui/AddToCart";
+import ProductActions from "@/components/ui/ProductActions";
 import Rating from "@/components/ui/Rating";
 import { useGetProductsQuery } from "@/redux/api/products";
-import Image from "next/image";
-import React from "react";
+import React, { useState } from "react";
+
 const NewProducts = () => {
   const { data: poducts } = useGetProductsQuery();
+  const [isEnter, setIsEnter] = useState<boolean>(false);
+  const [cuurentIndex, setCurrentIndex] = useState<number>(0);
+  const handleEnter = (index: number) => {
+    setIsEnter(true);
+    setCurrentIndex;
+  };
 
   return (
     <section className="mt-[100px]">
       <div className="container">
         <div className="flex flex-col gap-y-6">
           <div className="flex gap-x-4">
-            <span className="w-5 h-7 bg-red-500 "></span>
+            <span className="w-5 h-7 bg-red-500 rounded-md "></span>
             <h1 className="text-red-500 font-bold">Today&apos;s</h1>
           </div>
-          <div className="flex gap-x-4 ">
+          <div className="flex gap-x-4 overflow-x-auto  overflow-y-hidden scroll-hidden ">
             {poducts?.map((product, index) => (
               <div
                 key={index}
-                className="flex flex-col w-[270px] h-[350px] rounded-md"
+                className="flex flex-col w-[250px] h-[300px] rounded-md bg-neutral-50    "
               >
-                <div className="flex w-[270px] h-[270px]">
-                  <Image
+                <div className="flex items-center justify-center  w-[250px] h-[250px] overflow-hidden rounded-md relative">
+                  <img
                     src={product.image}
                     alt={product.title}
-                    className="w-full h-full"
+                    className="w-[150px]
+                  h-[150px]"
+                    onMouseEnter={() => handleEnter(product.id)}
+                    onMouseLeave={() => setIsEnter(false)}
                   />
+                  <ProductActions />
+                  {isEnter && <AddToCart />}
                 </div>
-                <div className="flex flex-col  gap-y-4">
-                  <p className="text-black">{product.title}</p>
-                  <p className="text-red-500">${product.price}</p>
-                  <Rating  rating={product.rating}/>
+                <div className="flex flex-col  gap-y-2 p-2">
+                  <p className="text-black truncate font-semibold">
+                    {product.title}
+                  </p>
+                  <span className="text-red-500 font-semibold flex items-center gap-x-1">
+                    ${product.price}
+                    <p className="text-neutral-400 line-through">
+                      {" "}
+                      (${product.rating.count})
+                    </p>
+                  </span>
+                  <Rating rating={product.rating} />
                 </div>
               </div>
             ))}

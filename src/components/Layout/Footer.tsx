@@ -3,11 +3,10 @@ import FooterList from "./FooterSections/FooterList";
 
 const Footer = () => {
   return (
-    <footer className="text-white  bg-neutral-900 py-[50px]">
+    <footer className="text-white  bg-neutral-900 py-[50px] mt-[100px]">
       <div className="container">
         <div>
           <FooterList />
-         
         </div>
       </div>
     </footer>
