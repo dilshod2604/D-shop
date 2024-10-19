@@ -1,3 +1,4 @@
+"use client";
 import React from "react";
 import Navbar from "../ui/Navbar";
 import SearchTrack from "../ui/SearchTrack";
@@ -6,8 +7,12 @@ import Image from "next/image";
 import logo from "../../assets/logo.png";
 import Categoryies from "../ui/Categoryies";
 import BurgerButton from "../ui/BurgerButton";
+import { useBurgerStore } from "@/store/useBurgerStore";
+import Modal from "../shared/Modal";
+import BurgerMenu from "../ui/BurgerMenu";
 
 const Header = () => {
+  const { isOpen, setIsOpen } = useBurgerStore();
   return (
     <header>
       <div className="container">
@@ -25,6 +30,12 @@ const Header = () => {
             <Categoryies />
             <BurgerButton />
           </div>
+          {isOpen && (
+            <Modal className="right-5 top-[70px] z-50 bg-purple-500/75 px-[30px]">
+              <BurgerMenu />
+            </Modal>
+          )}
+          {}
         </div>
       </div>
     </header>
