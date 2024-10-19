@@ -13,7 +13,7 @@ const HomeSideBar = () => {
         <Link
           key={index}
           href={link.href}
-          className="flex items-center px-2 py-1 hover:border-blue-500  border border-neutral-300 rounded-md transition"
+          className="flex items-center px-2 py-1 hover:border-blue-500  text-sm border border-neutral-300 rounded-md transition"
         >
           {link.name}
         </Link>
