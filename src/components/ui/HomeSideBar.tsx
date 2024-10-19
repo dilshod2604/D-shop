@@ -5,7 +5,7 @@ import React from "react";
 
 const HomeSideBar = () => {
   return (
-    <div className="flex flex-col gap-y-4 text-black pt-[40px] border-r border-neutral-400 pr-[50px]">
+    <div className="flex flex-col gap-y-4 text-black pt-[40px] border-r border-neutral-400 pr-[50px] max-sm:hidden">
       <Select defaultValue={"Woman&apos;s Fashion"} />
       <Select defaultValue={"Men&apos;s Fashion"} />
 

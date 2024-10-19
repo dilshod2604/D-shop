@@ -48,3 +48,4 @@ const Crousel = () => {
 };
 
 export default Crousel;
+  

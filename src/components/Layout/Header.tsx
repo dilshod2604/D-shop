@@ -4,6 +4,8 @@ import SearchTrack from "../ui/SearchTrack";
 import Actions from "../ui/Actions";
 import Image from "next/image";
 import logo from "../../assets/logo.png";
+import Categoryies from "../ui/Categoryies";
+import BurgerButton from "../ui/BurgerButton";
 
 const Header = () => {
   return (
@@ -20,6 +22,8 @@ const Header = () => {
           <div className="flex items-center gap-x-4 ">
             <SearchTrack />
             <Actions />
+            <Categoryies />
+            <BurgerButton />
           </div>
         </div>
       </div>
