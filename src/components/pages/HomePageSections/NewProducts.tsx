@@ -8,10 +8,14 @@ import React, { useState } from "react";
 const NewProducts = () => {
   const { data: poducts } = useGetProductsQuery();
   const [isEnter, setIsEnter] = useState<boolean>(false);
-  const [cuurentIndex, setCurrentIndex] = useState<number>(0);
-  const handleEnter = (index: number) => {
+  const [curentIndex, setCurrentIndex] = useState<number>(0);
+  const onMouseEnter = (index: number) => {
     setIsEnter(true);
-    setCurrentIndex;
+    setCurrentIndex(index);
+  };
+  const onMouseLeave = () => {
+    setIsEnter(false);
+    setCurrentIndex(0);
   };
 
   return (
@@ -28,17 +32,19 @@ const NewProducts = () => {
                 key={index}
                 className="flex flex-col w-[250px] h-[300px] rounded-md bg-neutral-50    "
               >
-                <div className="flex items-center justify-center  w-[250px] h-[250px] overflow-hidden rounded-md relative">
+                <div
+                  className="flex items-center justify-center  w-[250px] h-[250px] overflow-hidden rounded-md relative"
+                  onMouseEnter={() => onMouseEnter(product.id)}
+                  onMouseLeave={() => onMouseLeave}
+                >
                   <img
                     src={product.image}
                     alt={product.title}
                     className="w-[150px]
                   h-[150px]"
-                    onMouseEnter={() => handleEnter(product.id)}
-                    onMouseLeave={() => setIsEnter(false)}
                   />
                   <ProductActions />
-                  {isEnter && <AddToCart />}
+                  {curentIndex === product.id && <AddToCart />}
                 </div>
                 <div className="flex flex-col  gap-y-2 p-2">
                   <p className="text-black truncate font-semibold">
