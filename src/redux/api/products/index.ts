@@ -12,7 +12,10 @@ const api = index.injectEndpoints({
       }),
       providesTags: ["product"],
     }),
-    getProductsById: build.query<any, number>({
+    getProductsById: build.query<
+    PRODUCT.GetProductResponse,
+    PRODUCT.GetProductRequest
+  >({
       query: (id) => ({
         url: `/products/${id}`,
         method: "GET",
