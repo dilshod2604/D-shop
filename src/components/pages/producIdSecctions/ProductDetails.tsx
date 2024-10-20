@@ -1,4 +1,5 @@
 "use client";
+import ProducControl from "@/components/ui/ProducControl";
 import Rating from "@/components/ui/Rating";
 import { useGetProductsByIdQuery } from "@/redux/api/products";
 import { useParams } from "next/navigation";
@@ -26,7 +27,8 @@ const ProductDetails = () => {
               ${product?.price}
             </p>
             <p className="text-sm ">{product?.description}</p>
-
+            <span className="w-full h-[2px] bg-neutral-400 "></span>
+            <ProducControl />
           </div>
         </div>
       </div>

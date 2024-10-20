@@ -46,13 +46,14 @@ const NewProducts = () => {
                     alt={product.title}
                     className="w-[150px]
                   h-[150px]"
+                    onClick={() => router.push(`/products/${product.id}`)}
                   />
                   <ProductActions />
                   {curentIndex === product.id && <AddToCart />}
                 </div>
                 <div className="flex flex-col  gap-y-2 p-2">
                   <p
-                    className="text-black truncate font-semibold hover:underline"
+                    className="text-black truncate font-semibold hover:underline cursor-pointer"
                     onClick={() => router.push(`/products/${product.id}`)}
                   >
                     {product.title}
