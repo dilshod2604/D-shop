@@ -2,16 +2,12 @@
 import { Rate } from "antd";
 import React, { FC } from "react";
 interface RatingProps {
-  rating: {
-    rate: number;
-    count: number;
-  };
+ rate:number
 }
-const Rating: FC<RatingProps> = ({ rating }) => {
+const Rating: FC<RatingProps> = ({ rate}) => {
   return (
     <div className="flex">
-      <Rate allowHalf defaultValue={rating.rate} />
-     
+      <Rate allowHalf defaultValue={rate} />
     </div>
   );
 };

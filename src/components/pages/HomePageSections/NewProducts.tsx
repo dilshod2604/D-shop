@@ -64,7 +64,7 @@ const NewProducts = () => {
                       (${product.rating.count})
                     </p>
                   </span>
-                  <Rating rating={product.rating} />
+                  <Rating rate={product.rating.rate} />
                 </div>
               </div>
             ))}
