@@ -1,3 +1,11 @@
+import { IconType } from "react-icons";
+import { GiSmartphone } from "react-icons/gi";
+import { HiOutlineDesktopComputer } from "react-icons/hi";
+import { IoWatchOutline } from "react-icons/io5";
+import { FiCamera } from "react-icons/fi";
+import { SlEarphones } from "react-icons/sl";
+import { LuGamepad } from "react-icons/lu";
+
 export const links: {
   name: string;
   href: string;
@@ -51,3 +59,34 @@ export const sideBarLinks: { name: string; href: string }[] = [
   },
 ];
 
+interface ICategories {
+  name: string;
+  icon: IconType;
+}
+
+export const categories: ICategories[] = [
+  {
+    name: "Phones",
+    icon: GiSmartphone,
+  },
+  {
+    name: "Computers",
+    icon: HiOutlineDesktopComputer,
+  },
+  {
+    name: "Smart watch",
+    icon: IoWatchOutline,
+  },
+  {
+    name: "Camera",
+    icon: FiCamera,
+  },
+  {
+    name: "HeadPhones",
+    icon: SlEarphones,
+  },
+  {
+    name: "Caming",
+    icon: LuGamepad,
+  },
+];
