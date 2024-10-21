@@ -5,7 +5,7 @@ const Adventages = () => {
   return (
     <section className="mt-[100px]">
       <div className="constiner">
-        <div className="flex itrems-center  flex-wrap gap-x-[95px] justify-center ">
+        <div className="flex itrems-center  flex-wrap gap-x-[95px] justify-center  gap-y-4">
           {adventages.map((item, index) => (
             <div key={index} className="flex flex-col items-center gap-y-3">
               <div className="w-[80px] h-[80px] rounded-full flex items-center justify-center bg-neutral-400">
