@@ -41,7 +41,7 @@ const NewArrival = () => {
               </div>
               <div className="flex flex-col gap-y-4 z-10 relative ">
                 <h1 className="text-white font-bold text-2xl ">
-                  Women’s Collections
+                  Women&apos;s Collections
                 </h1>
                 <p className="text-neutral-200 text-sm max-w-[250px]">
                   Featured woman collections that give you another vibe.
