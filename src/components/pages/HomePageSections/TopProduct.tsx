@@ -17,7 +17,7 @@ const TopProduct = () => {
               Buy Now!
             </button>
           </div>
-          <div className="max-w-[568px] h-[330px] overflow-hidden absolute right-[60px]  top-[100px] max-sm:right-5 max-sm:brightness-50">
+          <div className="max-w-[568px] h-[400px] overflow-hidden absolute right-[60px]  top-[50px] max-sm:right-5 max-sm:brightness-50">
             <Image src={image} alt="cover" className="w-full h-full " />
           </div>
         </div>

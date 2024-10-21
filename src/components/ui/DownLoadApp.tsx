@@ -2,6 +2,7 @@ import Image from "next/image";
 import React from "react";
 import { FaGooglePlay } from "react-icons/fa";
 import { GrApple } from "react-icons/gr";
+import qrCode from "../../assets/Qrcode.png";
 const DownLoadApp = () => {
   return (
     <div className="flex flex-col  ">
@@ -10,7 +11,7 @@ const DownLoadApp = () => {
         Save $3 with App New User Only
       </p>
       <div className="flex items-center gap-x-4">
-        <Image src={""} alt="" className="w-[100px] h-[100px]" />
+        <Image src={qrCode} alt="QrCode" className="w-[100px] h-[100px]" />
         <div className="flex flex-col gap-y-2">
           <button className="flex items-center border border-white rounded-md p-1 font-bold gap-x-2 hover:opacity-75 transition">
             <FaGooglePlay size={20} className="text-white" />

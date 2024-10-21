@@ -4,12 +4,15 @@ import AddToCart from "@/components/ui/AddToCart";
 import ProductActions from "@/components/ui/ProductActions";
 import Rating from "@/components/ui/Rating";
 import { useGetProductsQuery } from "@/redux/api/products";
+import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 
 const BestProducts = () => {
   const { data: poducts } = useGetProductsQuery();
   const [isEnter, setIsEnter] = useState<boolean>(false);
   const [curentIndex, setCurrentIndex] = useState<number>(0);
+  const router = useRouter();
+
   const onMouseEnter = (index: number) => {
     setIsEnter(true);
     setCurrentIndex(index);
@@ -50,12 +53,16 @@ const BestProducts = () => {
                     alt={product.title}
                     className="w-[150px]
                   h-[150px]"
+                    onClick={() => router.push(`/products/${product.id}`)}
                   />
                   <ProductActions />
                   {curentIndex === product.id && <AddToCart />}
                 </div>
                 <div className="flex flex-col  gap-y-2 p-2">
-                  <p className="text-black truncate font-semibold">
+                  <p
+                    className="text-black truncate font-semibold hover:underline cursor-pointer"
+                    onClick={() => router.push(`/products/${product.id}`)}
+                  >
                     {product.title}
                   </p>
                   <span className="text-red-500 font-semibold flex items-center gap-x-1">

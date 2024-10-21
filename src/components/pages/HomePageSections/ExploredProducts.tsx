@@ -6,13 +6,13 @@ import Rating from "@/components/ui/Rating";
 import { useGetProductsQuery } from "@/redux/api/products";
 import { useRouter } from "next/navigation";
 import React, { useState } from "react";
+import NewColection from "./NewColection";
 
-const NewProducts = () => {
+const ExploredProducts = () => {
   const { data: poducts } = useGetProductsQuery();
   const [isEnter, setIsEnter] = useState<boolean>(false);
   const [curentIndex, setCurrentIndex] = useState<number>(0);
   const router = useRouter();
-
   const onMouseEnter = (index: number) => {
     setIsEnter(true);
     setCurrentIndex(index);
@@ -28,8 +28,14 @@ const NewProducts = () => {
         <div className="flex flex-col gap-y-6 ">
           <div className="flex gap-x-4">
             <span className="w-5 h-7 bg-red-500 rounded-md "></span>
-            <h1 className="text-red-500 font-bold">Today&apos;s</h1>
+            <h1 className="text-red-500 font-bold">Our products</h1>
           </div>
+          <div className=" flex items-center justify-start  mb-[40px] mt-4">
+            <h1 className="text-black font-bold text-3xl">
+              Explore Our Products
+            </h1>
+          </div>
+
           <div className="flex gap-x-4 overflow-x-auto  overflow-y-hidden scroll-hidden snap-x ">
             {poducts?.map((product, index) => (
               <div
@@ -70,11 +76,11 @@ const NewProducts = () => {
               </div>
             ))}
           </div>
-          
+      
         </div>
       </div>
     </section>
   );
 };
 
-export default NewProducts;
+export default ExploredProducts;

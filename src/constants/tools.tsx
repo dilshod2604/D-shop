@@ -4,11 +4,14 @@ import image2 from "../assets/iphone-16-pro-desert-roundup-header-1.webp";
 import image3 from "../assets/iphone-16.webp";
 import { IconType } from "react-icons";
 import { StaticImageData } from "next/image";
+import { TbTruckDelivery } from "react-icons/tb";
+import { RiCustomerServiceLine } from "react-icons/ri";
+import { SiAdguard } from "react-icons/si";
 export const carousel: {
   name: string;
   title: string;
   icon: IconType;
-  image: StaticImageData;   
+  image: StaticImageData;
 }[] = [
   {
     name: "iPhone 16  Series ",
@@ -28,4 +31,26 @@ export const carousel: {
     icon: BsApple,
     image: image3,
   },
+];
+
+interface IAdventages {
+  icon: IconType;
+  title: string;
+  description: string;
+}
+export const adventages: IAdventages[] = [
+  {
+    icon: TbTruckDelivery,
+    title: "FREE AND FAST DELIVERY ",
+    description: "Free delivery for all orders over $140 ",
+  },{
+    icon:RiCustomerServiceLine,
+    title: " 24/7 CUSTOMER SERVICE ",
+    description: "Friendly 24/7 customer support",
+  }
+  ,{
+    icon:SiAdguard,
+    title: "MONEY BACK GUARANTEE ",
+    description: " We reurn money within 30 days",
+  }
 ];

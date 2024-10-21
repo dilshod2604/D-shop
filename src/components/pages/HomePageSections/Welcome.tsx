@@ -9,7 +9,7 @@ import React from "react";
 const Welcome = () => {
   const { isOpen } = useCategoriesStore();
   return (
-    <section>
+    <section className="pt-10">
       <div className="container">
         <div className="flex gap-x-5 ">
           <HomeSideBar />

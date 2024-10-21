@@ -14,7 +14,7 @@ import BurgerMenu from "../ui/BurgerMenu";
 const Header = () => {
   const { isOpen, setIsOpen } = useBurgerStore();
   return (
-    <header>
+    <header className="fixed top-0 left-0 w-full z-50 bg-neutral-100">
       <div className="container">
         <div className="flex items-start justify-between pt-5 pb-2 border-b border-neutral-400">
           <div className="flex items-center justify-center  overflow-hidden">

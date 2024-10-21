@@ -7,12 +7,11 @@ import { useGetProductsQuery } from "@/redux/api/products";
 import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 
-const NewProducts = () => {
+const NewColection = () => {
   const { data: poducts } = useGetProductsQuery();
   const [isEnter, setIsEnter] = useState<boolean>(false);
   const [curentIndex, setCurrentIndex] = useState<number>(0);
   const router = useRouter();
-
   const onMouseEnter = (index: number) => {
     setIsEnter(true);
     setCurrentIndex(index);
@@ -23,13 +22,9 @@ const NewProducts = () => {
   };
 
   return (
-    <section className="mt-[100px]">
+    <section className="mt-5">
       <div className="container ">
         <div className="flex flex-col gap-y-6 ">
-          <div className="flex gap-x-4">
-            <span className="w-5 h-7 bg-red-500 rounded-md "></span>
-            <h1 className="text-red-500 font-bold">Today&apos;s</h1>
-          </div>
           <div className="flex gap-x-4 overflow-x-auto  overflow-y-hidden scroll-hidden snap-x ">
             {poducts?.map((product, index) => (
               <div
@@ -50,6 +45,9 @@ const NewProducts = () => {
                   />
                   <ProductActions />
                   {curentIndex === product.id && <AddToCart />}
+                  <span className="absolute px-2 py-[2px] flex items-center justify-center rounded-md bg-green-500  top-2 left-2">
+                    <p className="text-white font-semibold">New</p>
+                  </span>
                 </div>
                 <div className="flex flex-col  gap-y-2 p-2">
                   <p
@@ -70,6 +68,11 @@ const NewProducts = () => {
               </div>
             ))}
           </div>
+          <div className="w-full flex items-center justify-center ">
+            <ViewAllButton className="max-w-[300px] rounded-lg">
+              View All Products
+            </ViewAllButton>
+          </div>
           
         </div>
       </div>
@@ -77,4 +80,4 @@ const NewProducts = () => {
   );
 };
 
-export default NewProducts;
+export default NewColection;
