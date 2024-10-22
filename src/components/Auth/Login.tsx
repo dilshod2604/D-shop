@@ -1,9 +1,21 @@
-import React from 'react'
+"use client";
+import React from "react";
+import Image from "next/image";
+import image from "../../assets/auth.png";
+import SignInForm from "./LoginFormSections/SignInForm";
 
-const Login = () => {
+const SignUp = () => {
   return (
-    <div>Login</div>
-  )
-}
+    <div className=" flex w-full h-[800px] rounded-md overflow-hidden relative mt-[50px]">
+      <Image
+        src={image}
+        alt="cover"
+        className=" absolute w-full h-[781px] brightness-50"
+      />
 
-export default Login
+      <SignInForm />
+    </div>
+  );
+};
+
+export default SignUp;

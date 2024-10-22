@@ -97,7 +97,10 @@ const SignUpForm = () => {
         </button>
         <div className="flex items-center  justify-center gap-x-2 ">
           <p className=" font-sm text-neutral-200 ">Already have account?</p>
-          <Link href={"#"} className="text-white hover:underline font-bold">
+          <Link
+            href="/auth/login"
+            className="text-white hover:underline font-bold"
+          >
             Log in
           </Link>
         </div>

@@ -8,7 +8,16 @@ const api = index.injectEndpoints({
         method: "POST",
         body: data,
       }),
+      invalidatesTags: ["auth"],
+    }),
+    signIn: build.mutation<AUTH.GetSignInResponse, AUTH.GetSignInRequest>({
+      query: (data) => ({
+        url: "/api/auth/sign-in",
+        method: "POST",
+        body: data,
+      }),
+      invalidatesTags: ["auth"],
     }),
   }),
 });
-export const { useSignUpMutation } = api;
+export const { useSignUpMutation, useSignInMutation } = api;
