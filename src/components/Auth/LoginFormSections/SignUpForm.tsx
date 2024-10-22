@@ -31,7 +31,7 @@ const SignUpForm = () => {
         name: value.name,
         email: value.email,
         password: value.password,
-        photo: value.photo,
+        photo: image,
       };
       const res = await signUp(data);
       console.log(data);

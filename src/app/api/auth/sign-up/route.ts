@@ -6,7 +6,7 @@ interface SignupRequest {
   name: string;
   email: string;
   password: string;
-  photo: File;
+  photo: string;
 }
 
 export const POST = async (request: Request) => {
@@ -28,25 +28,25 @@ export const POST = async (request: Request) => {
       });
     }
     //upload photo
-    const { data: uploadData, error: uploadError } = await supabase.storage
-      .from("avatars")
-      .upload(`public/${Date.now()}_${photo.name}`, photo);
+    // const { data: uploadData, error: uploadError } = await supabase.storage
+    //   .from("avatars")
+    //   .upload(`public/${Date.now()}_${photo.name}`, photo);
 
-    if (uploadError) {
-      return NextResponse.json({
-        status: 500,
-        message: "Error uploading photo",
-      });
-    }
-    //generate photo url
-    const photoUrl = `${process.env.NEXT_PUBLIC_SUPABASE_URL}/storage/v1/object/public/avatars/${uploadData?.path}`;
+    // if (uploadError) {
+    //   return NextResponse.json({
+    //     status: 500,
+    //     message: "Error uploading photo",
+    //   });
+    // }
+    // //generate photo url
+    // const photoUrl = `${process.env.NEXT_PUBLIC_SUPABASE_URL}/storage/v1/object/public/avatars/${uploadData?.path}`;
 
     const data = await prisma.user.create({
       data: {
         name,
         email,
         password: hashedPassword,
-        photo: photoUrl,
+        photo,
       },
     });
 
