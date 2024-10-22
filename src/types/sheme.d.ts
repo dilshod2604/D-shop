@@ -10,3 +10,9 @@ export interface IProduct {
     count: number;
   };
 }
+export interface IUser {
+  name: string;
+  email: string;
+  password: string;
+  photo: File;
+}

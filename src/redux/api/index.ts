@@ -7,16 +7,26 @@ import {
 const BaseQquery = fetchBaseQuery({
   baseUrl: "https://fakestoreapi.com/",
 });
+const secondBaseQuery = fetchBaseQuery({
+  baseUrl: "http://localhost:3000/",
+});
 
-const baseQueryExtends: BaseQueryFn = async (arg, api, extraOptions) => {
-  const result = await BaseQquery(arg, api, extraOptions);
+const baseQueryWithTwoUrls: BaseQueryFn = async (arg, api, extraOptions) => {
+  let result;
+  if (arg.url.startsWith("/api/auth")) {
+    result = await secondBaseQuery(arg, api, extraOptions);
+  } else {
+    result = await BaseQquery(arg, api, extraOptions);
+  }
+
   return result;
 };
+
 export const api = createApi({
   reducerPath: "api",
-  baseQuery: baseQueryExtends,
+  baseQuery: baseQueryWithTwoUrls,
   refetchOnFocus: true,
   refetchOnReconnect: true,
-  tagTypes: ["product","category"],
+  tagTypes: ["product", "category", "auth"],
   endpoints: () => ({}),
 });
