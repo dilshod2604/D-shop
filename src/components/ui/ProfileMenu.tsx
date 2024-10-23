@@ -23,7 +23,7 @@ const ProfileMenu = () => {
         <p className="text-white font-bold ">My order</p>
       </Link>
       <Link
-        href="#"
+        href="/admin"
         className="flex items-center gap-x-3 py-2 px-2 rounded-md border hover:scale-110 "
       >
         <RiAdminLine size={25} className="text-white" />
