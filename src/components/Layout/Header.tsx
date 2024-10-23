@@ -16,11 +16,14 @@ import ActionsButton from "../ui/ActionsButton";
 import { useActionsStore } from "@/store/useActionsStore";
 import ActionMenu from "../ui/ActionMenu";
 import { useRouter } from "next/navigation";
+import { useProfileStore } from "@/store/useProfileStore";
+import ProfileMenu from "../ui/ProfileMenu";
 
 const Header = () => {
   const router = useRouter();
-  const { isOpen, setIsOpen } = useBurgerStore();
+  const { isOpen } = useBurgerStore();
   const { isOpen: open } = useActionsStore();
+  const { isShow } = useProfileStore();
 
   const { data: me } = useGetMeQuery();
 
@@ -54,6 +57,11 @@ const Header = () => {
           {open && (
             <Modal className="right-[150px] top-[70px] z-50 bg-neutral-800 px-[30px] ">
               <ActionMenu />
+            </Modal>
+          )}
+          {isShow && (
+            <Modal className="right-[170px] top-[70px] z-50 bg-neutral-800 px-[30px] max-2xl:right-[20px] max-lg:right-[10px] ">
+              <ProfileMenu />
             </Modal>
           )}
         </div>

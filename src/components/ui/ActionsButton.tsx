@@ -9,9 +9,9 @@ const ActionsButton = () => {
   return (
     <button onClick={() => setIsOpen(!isOpen)} className=" hidden max-sm:flex">
       {isOpen ? (
-        <RiAppsLine size={25} className="text-black" />
-      ) : (
         <RiAppsFill size={25} className="text-black" />
+      ) : (
+        <RiAppsLine size={25} className="text-black" />
       )}
     </button>
   );
