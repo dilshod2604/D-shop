@@ -4,6 +4,8 @@ import { PiSealPercentFill } from "react-icons/pi";
 import { IconType } from "react-icons";
 import { HiUsers } from "react-icons/hi2";
 import { MdShoppingCart } from "react-icons/md";
+import { LuMessageSquare } from "react-icons/lu";
+import { RiFileList2Line } from "react-icons/ri";
 export const menu: { name: string; icon: IconType; href: string }[] = [
   {
     name: "Dasboard",
@@ -32,5 +34,17 @@ export const management: { name: string; icon: IconType; href: string }[] = [
     name: "Costomers",
     icon: HiUsers,
     href: "/admin/costomers",
+  },
+];
+export const notifications: { name: string; icon: IconType; href: string }[] = [
+  {
+    name: "Transactions",
+    icon: RiFileList2Line,
+    href: "/admin/transactions",
+  },
+  {
+    name: "Message",
+    icon: LuMessageSquare,
+    href: "/admin/message",
   },
 ];

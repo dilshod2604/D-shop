@@ -3,8 +3,9 @@ import Image from "next/image";
 import { useRouter } from "next/navigation";
 import React from "react";
 import logo from "../../assets/logo.png";
-import SideBarMenu from "../ui/SideBarMenu";
-import SideBarManagment from "../ui/SideBarManagment";
+import SideBarMenu from "./ui/SideBarMenu";
+import SideBarManagment from "./ui/SideBarManagment";
+import SideBarNotifications from "./ui/SideBarNotifications";
 
 const SideBar = () => {
   const router = useRouter();
@@ -22,6 +23,7 @@ const SideBar = () => {
         </div>
         <SideBarMenu />
         <SideBarManagment />
+        <SideBarNotifications />
       </div>
     </div>
   );
