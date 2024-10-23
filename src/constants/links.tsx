@@ -90,3 +90,4 @@ export const categories: ICategories[] = [
     icon: LuGamepad,
   },
 ];
+
