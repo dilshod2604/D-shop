@@ -8,8 +8,8 @@ const SideBarNotifications = () => {
   const pathname = usePathname();
 
   return (
-    <div className="flex flex-col gap-y-4 ] ">
-      <h1 className="text-white font-bold text-xl py-2 border-b border-neutral-400">
+    <div className="flex flex-col gap-y-2] ">
+      <h1 className="text-white font-bold text-lg py-2 border-b border-neutral-400">
         Notifications
       </h1>
       <ul className="flex flex-col gap-y-2">

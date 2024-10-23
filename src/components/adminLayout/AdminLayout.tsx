@@ -4,9 +4,12 @@ import SideBar from "./SideBar";
 
 const AdminLayout = ({ children }: { children: ReactNode }) => {
   return (
-    <div className="flex">
+    <div className="flex gap-x-1">
       <SideBar />
-      <main>{children}</main>
+      <div className=" flex flex-col w-full">
+        <Header />
+        <main>{children}</main>
+      </div>
     </div>
   );
 };

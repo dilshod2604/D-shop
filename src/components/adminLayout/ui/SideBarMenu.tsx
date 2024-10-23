@@ -7,8 +7,8 @@ import React from "react";
 const SideBarMenu = () => {
   const pathname = usePathname();
   return (
-    <div className="flex flex-col gap-y-4 mt-[50px] ">
-      <h1 className="text-white font-bold text-xl py-2 border-b border-neutral-400">
+    <div className="flex flex-col gap-y-2 mt-[30px] ">
+      <h1 className="text-white font-bold text-lg py-2 border-b border-neutral-400">
         Menu
       </h1>
       <ul className="flex flex-col gap-y-2">

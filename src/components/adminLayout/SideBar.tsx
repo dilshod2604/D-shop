@@ -11,7 +11,7 @@ const SideBar = () => {
   const router = useRouter();
   return (
     <div className="flex flex-col max-w-[400px] h-[100vh] bg-sky-900 py-5 px-[30px]">
-      <div className="flex flex-col gap-y-5">
+      <div className="flex flex-col gap-y-3 items-start">
         <div
           className="flex items-center justify-center  overflow-hidden "
           onClick={() => router.push("/admin")}
