@@ -18,6 +18,13 @@ const api = index.injectEndpoints({
       }),
       invalidatesTags: ["auth"],
     }),
+    getMe: build.query({
+      query: () => ({
+        url: "/api/auth/get-me",
+        method: "GET",
+      }),
+      providesTags: ["auth"],
+    }),
   }),
 });
-export const { useSignUpMutation, useSignInMutation } = api;
+export const { useSignUpMutation, useSignInMutation, useGetMeQuery } = api;

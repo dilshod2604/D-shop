@@ -2,6 +2,9 @@
 import React from "react";
 import { useSignInMutation } from "@/redux/api/auth";
 import { SubmitHandler, useForm } from "react-hook-form";
+import { FcGoogle } from "react-icons/fc";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 interface InputValue {
   email: string;
@@ -9,6 +12,7 @@ interface InputValue {
 }
 
 const SignInForm = () => {
+  const router = useRouter();
   const { register, handleSubmit } = useForm<InputValue>();
   const [signIn] = useSignInMutation();
 
@@ -18,7 +22,7 @@ const SignInForm = () => {
         email: value.email,
         password: value.password,
       });
-      console.log(res);
+      router.push("/");
     } catch (error) {
       console.log(error);
     }
@@ -54,6 +58,19 @@ const SignInForm = () => {
             Log in
           </button>
         </form>
+        <button className="flex items-center justify-center rounded-md bg-white py-3 gap-x-2 font-bold hover:opacity-75">
+          <FcGoogle size={25} />
+          Sign up with Google
+        </button>
+        <div className="flex items-center  justify-center gap-x-2 ">
+          <p className=" font-sm text-neutral-200 ">Already have account?</p>
+          <Link
+            href="/auth/sign-up"
+            className="text-white hover:underline font-bold"
+          >
+            Log in
+          </Link>
+        </div>
       </div>
     </section>
   );

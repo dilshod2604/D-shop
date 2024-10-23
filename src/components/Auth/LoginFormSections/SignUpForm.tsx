@@ -2,11 +2,14 @@
 import { useSignUpMutation } from "@/redux/api/auth";
 import { IUser } from "@/types/sheme";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import React, { ChangeEvent, useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { FcGoogle } from "react-icons/fc";
 import { RxAvatar } from "react-icons/rx";
+import { clearScreenDown } from "readline";
 const SignUpForm = () => {
+  const router = useRouter();
   const [image, setImage] = useState<string>("");
   const { register, handleSubmit } = useForm<IUser>();
   const [signUp] = useSignUpMutation();
@@ -33,8 +36,8 @@ const SignUpForm = () => {
         password: value.password,
         photo: image,
       };
-      const res = await signUp(data);
-      console.log(data);
+      await signUp(data);
+      router.push("/auth/login");
     } catch (error) {
       console.log(error);
     }
