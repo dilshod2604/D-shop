@@ -7,7 +7,7 @@ import { TbLayoutListFilled } from "react-icons/tb";
 const Categoryies = () => {
   const { isOpen, setIsOpen } = useCategoriesStore();
   return (
-    <div className="hidden max-sm:flex items-center justify-center  ">
+    <div className="hidden max-sm:flex items-center justify-center cursor-pointer  ">
       {isOpen ? (
         <TbLayoutListFilled
           size={20}

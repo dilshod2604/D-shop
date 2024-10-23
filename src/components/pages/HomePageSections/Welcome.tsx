@@ -16,7 +16,7 @@ const Welcome = () => {
           <Crousel />
         </div>
         {isOpen && (
-          <Modal className=" top-[70px] right-[70px] z-30  bg-purple-500/75 ">
+          <Modal className=" top-[70px] right-[70px] z-30  bg-neutral-800 ">
             <CategoriesMenu />
           </Modal>
         )}

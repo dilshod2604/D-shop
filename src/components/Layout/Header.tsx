@@ -12,9 +12,16 @@ import Modal from "../shared/Modal";
 import BurgerMenu from "../ui/BurgerMenu";
 import { useGetMeQuery } from "@/redux/api/auth";
 import ProfileButton from "../ui/ProfileButton";
+import ActionsButton from "../ui/ActionsButton";
+import { useActionsStore } from "@/store/useActionsStore";
+import ActionMenu from "../ui/ActionMenu";
+import { useRouter } from "next/navigation";
 
 const Header = () => {
+  const router = useRouter();
   const { isOpen, setIsOpen } = useBurgerStore();
+  const { isOpen: open } = useActionsStore();
+
   const { data: me } = useGetMeQuery();
   console.log(me);
 
@@ -22,7 +29,10 @@ const Header = () => {
     <header className="fixed top-0 left-0 w-full z-50 bg-neutral-100">
       <div className="container">
         <div className="flex items-start justify-between pt-5 pb-2 border-b border-neutral-400">
-          <div className="flex items-center justify-center  overflow-hidden">
+          <div
+            className="flex items-center justify-center  overflow-hidden "
+            onClick={() => router.push("/")}
+          >
             <Image src={logo} alt="logo" className="w-[30px] h-[30px]" />
             <span className="flex items-center text-sky-600 font-bold max-md:hidden">
               D-<p className="text-pink-600  ">shop</p>
@@ -30,6 +40,7 @@ const Header = () => {
           </div>
           <Navbar />
           <div className="flex items-center gap-x-4 ">
+            <ActionsButton />
             <SearchTrack />
             <Actions />
             <Categoryies />
@@ -37,11 +48,15 @@ const Header = () => {
             <BurgerButton />
           </div>
           {isOpen && (
-            <Modal className="right-5 top-[70px] z-50 bg-purple-500/75 px-[30px]">
+            <Modal className="right-5 top-[70px] z-50 bg-neutral-800 px-[30px]">
               <BurgerMenu />
             </Modal>
           )}
-          {}
+          {open && (
+            <Modal className="right-[150px] top-[70px] z-50 bg-neutral-800 px-[30px] ">
+              <ActionMenu />
+            </Modal>
+          )}
         </div>
       </div>
     </header>

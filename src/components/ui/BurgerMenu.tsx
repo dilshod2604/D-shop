@@ -7,8 +7,8 @@ import React from "react";
 const BurgerMenu = () => {
   const pathName = usePathname();
   return (
-    <div className="flex flex-col ">
-      <ul className="flex  flex-col items-start  gap-y-5  text-black">
+    <div className="flex flex-col items-start">
+      <ul className="flex  flex-col items-start gap-y-5  text-black ">
         {links.map((link, index) => (
           <li key={index}>
             {pathName === link.href ? (

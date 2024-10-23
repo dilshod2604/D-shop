@@ -14,7 +14,7 @@ const CategoriesMenu = () => {
         <Link
           key={index}
           href={link.href}
-          className="flex items-center px-2 py-1 hover:border-blue-500  text-sm border border-neutral-300 rounded-md transition bg-white text-white "
+          className="flex items-center px-2 py-1 hover:border-blue-500  text-sm border border-neutral-300 rounded-md transition bg-white text-black "
         >
           {link.name}
         </Link>
