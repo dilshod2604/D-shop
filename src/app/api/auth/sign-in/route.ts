@@ -1,6 +1,5 @@
 import bcrypt from "bcrypt";
 import { NextResponse } from "next/server";
-import { cookies } from "next/headers";
 import { prisma } from "@/lib/prisma";
 
 export const POST = async (req: Request) => {
@@ -14,24 +13,29 @@ export const POST = async (req: Request) => {
     });
     if (!user) {
       return NextResponse.json(
-        { error: "'Invalid credentials'" },
+        { error: "Invalid credentials" },
         { status: 401 }
       );
     }
 
-    cookies().set("user_id", `${user.id}`, {
-      path: "/",
-      maxAge: 24 * 60 * 60 * 7,
-    });
-
-    const isPasswordValid = await bcrypt.compare(password, user?.password);
+    const isPasswordValid = await bcrypt.compare(password, user.password);
     if (!isPasswordValid) {
       return NextResponse.json(
-        { error: "'Invalid credentials'" },
+        { error: "Invalid credentials" },
         { status: 401 }
       );
     }
-    return NextResponse.json(user, { status: 200 });
+
+    const response = NextResponse.json(user, { status: 200 });
+    response.cookies.set("user_id", `${user.id}`, {
+      path: "/",
+      maxAge: 24 * 60 * 60 * 7,
+      httpOnly: true,
+      secure: process.env.NODE_ENV === "production", 
+      sameSite: "lax", 
+    });
+
+    return response;
   } catch (error) {
     return NextResponse.json({ error: "Method not allowed" }, { status: 405 });
   }

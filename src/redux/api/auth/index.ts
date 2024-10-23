@@ -18,7 +18,7 @@ const api = index.injectEndpoints({
       }),
       invalidatesTags: ["auth"],
     }),
-    getMe: build.query({
+    getMe: build.query<AUTH.GetMeResponse,AUTH.GetMeRequest>({
       query: () => ({
         url: "/api/auth/get-me",
         method: "GET",

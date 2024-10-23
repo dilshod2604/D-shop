@@ -1,5 +1,4 @@
 import { prisma } from "@/lib/prisma";
-import { supabase } from "@/lib/supabaseClient";
 import bcrypt from "bcrypt";
 import { NextResponse } from "next/server";
 interface SignupRequest {

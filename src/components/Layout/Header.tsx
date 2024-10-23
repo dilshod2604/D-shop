@@ -10,9 +10,14 @@ import BurgerButton from "../ui/BurgerButton";
 import { useBurgerStore } from "@/store/useBurgerStore";
 import Modal from "../shared/Modal";
 import BurgerMenu from "../ui/BurgerMenu";
+import { useGetMeQuery } from "@/redux/api/auth";
+import ProfileButton from "../ui/ProfileButton";
 
 const Header = () => {
   const { isOpen, setIsOpen } = useBurgerStore();
+  const { data: me } = useGetMeQuery();
+  console.log(me);
+
   return (
     <header className="fixed top-0 left-0 w-full z-50 bg-neutral-100">
       <div className="container">
@@ -28,6 +33,7 @@ const Header = () => {
             <SearchTrack />
             <Actions />
             <Categoryies />
+            {me?.email && <ProfileButton image={me.photo!} />}
             <BurgerButton />
           </div>
           {isOpen && (

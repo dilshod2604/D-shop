@@ -4,7 +4,7 @@ interface ProfileButtonProps {
 }
 const ProfileButton: FC<ProfileButtonProps> = ({ image }) => {
   return (
-    <button className="flex items-center justify-center w-10 h-10 rounded-full overflow-hidden">
+    <button className="flex items-center justify-center w-10 h-10 rounded-full overflow-hidden bg.black">
       <img src={image} alt="avatar" />
     </button>
   );

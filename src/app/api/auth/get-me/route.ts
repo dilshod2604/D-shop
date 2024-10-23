@@ -5,12 +5,10 @@ import { NextResponse } from "next/server";
 export const GET = async () => {
   try {
     const myid = cookies().get("user_id")?.value;
+    console.log("myid", myid);
 
     if (!myid) {
-      return NextResponse.json(
-        { message: "id is not  found" },
-        { status: 404 }
-      );
+      return NextResponse.json({ message: "id is not found" }, { status: 404 });
     }
 
     const idNumber = Number(myid);
