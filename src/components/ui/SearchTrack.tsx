@@ -1,4 +1,5 @@
 "use client";
+import { useSearchProductsQuery } from "@/redux/api/search";
 import React, { FC, useState } from "react";
 import { DebounceInput } from "react-debounce-input";
 import { CiSearch } from "react-icons/ci";
@@ -8,6 +9,7 @@ interface SearchTrackProps {
 }
 const SearchTrack: FC<SearchTrackProps> = ({ className }) => {
   const [searchQuery, setSearchQuery] = useState<string>("");
+  const { data } = useSearchProductsQuery(searchQuery);
   return (
     <div className={twMerge("max-sm:hidden", className)}>
       <div className="flex items-center  gap-x-4 bg-neutral-200 px-4 rounded-md">

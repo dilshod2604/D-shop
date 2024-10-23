@@ -23,7 +23,6 @@ const Header = () => {
   const { isOpen: open } = useActionsStore();
 
   const { data: me } = useGetMeQuery();
-  console.log(me);
 
   return (
     <header className="fixed top-0 left-0 w-full z-50 bg-neutral-100">
