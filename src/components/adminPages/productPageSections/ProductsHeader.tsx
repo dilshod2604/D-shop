@@ -3,6 +3,7 @@ import { useAddProductStore } from "@/store/useAddProductStore";
 import { Modal } from "antd";
 import React from "react";
 import { FiPlusCircle } from "react-icons/fi";
+import CreateProduct from "../ui/CreateProduct";
 const ProductsHeader = () => {
   const { close, isOpen, setIsOpen } = useAddProductStore();
   return (
@@ -25,8 +26,9 @@ const ProductsHeader = () => {
         title="Create new product"
         open={isOpen}
         onCancel={() => close(false)}
+        footer={null}
       >
-        
+        <CreateProduct />
       </Modal>
     </section>
   );

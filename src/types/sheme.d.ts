@@ -1,14 +1,20 @@
 export interface IProduct {
-  id: number;
-  title: string;
+  name: string;
   price: number;
-  description: string;
+  imageUrl: string;
+  rating: number;
   category: string;
-  image: string;
-  rating: {
-    rate: number;
-    count: number;
-  };
+  views: number;
+}
+
+export interface IProducts {
+  id: number;
+  name: string;
+  price: number;
+  imageUrl: string;
+  rating: number;
+  category: string;
+  views: number;
 }
 export interface IUser {
   name: string;

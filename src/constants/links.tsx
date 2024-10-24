@@ -91,3 +91,26 @@ export const categories: ICategories[] = [
   },
 ];
 
+export const categoryOptions=[
+  {
+    value:"phones",
+    label:"Phones"
+  },
+  {
+    value:"computers",
+    label:"Computers"
+  }, {
+    value:"smart watch",
+    label:"Smart watch"
+  }, {
+    value:"camera",
+    label:"Camera"
+  }, {
+    value:"headphones",
+    label:"HeadPhones"
+  }, {
+    value:"gaming",
+    label:"Gaming"
+  },
+]
+

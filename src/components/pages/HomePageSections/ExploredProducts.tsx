@@ -3,10 +3,10 @@ import ViewAllButton from "@/components/shared/ViewAllButton";
 import AddToCart from "@/components/ui/AddToCart";
 import ProductActions from "@/components/ui/ProductActions";
 import Rating from "@/components/ui/Rating";
-import { useGetProductsQuery } from "@/redux/api/products";
 import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 import NewColection from "./NewColection";
+import { useGetProductsQuery } from "@/redux/api/product";
 
 const ExploredProducts = () => {
   const { data: poducts } = useGetProductsQuery();
@@ -48,8 +48,8 @@ const ExploredProducts = () => {
                   onMouseLeave={() => onMouseLeave}
                 >
                   <img
-                    src={product.image}
-                    alt={product.title}
+                    src={product.imageUrl}
+                    alt={product.name}
                     className="w-[150px]
                   h-[150px]"
                     onClick={() => router.push(`/products/${product.id}`)}
@@ -62,16 +62,13 @@ const ExploredProducts = () => {
                     className="text-black truncate font-semibold hover:underline cursor-pointer"
                     onClick={() => router.push(`/products/${product.id}`)}
                   >
-                    {product.title}
+                    {product.name}
                   </p>
                   <span className="text-red-500 font-semibold flex items-center gap-x-1">
                     ${product.price}
-                    <p className="text-neutral-400 line-through">
-                      {" "}
-                      (${product.rating.count})
-                    </p>
+                    
                   </span>
-                  <Rating rate={product.rating.rate} />
+                  <Rating rate={product.rating} />
                 </div>
               </div>
             ))}
