@@ -10,15 +10,15 @@ import React, { useState } from "react";
 const NewColection = () => {
   const { data: poducts } = useGetProductsQuery();
   const [isEnter, setIsEnter] = useState<boolean>(false);
-  const [curentIndex, setCurrentIndex] = useState<number>(0);
+  const [curentIndex, setCurrentIndex] = useState<string>("");
   const router = useRouter();
-  const onMouseEnter = (index: number) => {
+  const onMouseEnter = (id: string) => {
     setIsEnter(true);
-    setCurrentIndex(index);
+    setCurrentIndex(id);
   };
   const onMouseLeave = () => {
     setIsEnter(false);
-    setCurrentIndex(0);
+    setCurrentIndex("");
   };
 
   return (
