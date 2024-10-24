@@ -23,6 +23,21 @@ const api = index.injectEndpoints({
       }),
       providesTags: ["product"],
     }),
+
+    getProductsById: build.query<
+      PRODUCT.GetProductByIdResponse,
+      PRODUCT.GetProductByIdRequest
+    >({
+      query: (product_id) => ({
+        url: `/api/product/get/${product_id}`,
+        method: "GET",
+      }),
+      providesTags: ["product"],
+    }),
   }),
 });
-export const { useCreateProducMutation, useGetProductsQuery } = api;
+export const {
+  useCreateProducMutation,
+  useGetProductsQuery,
+  useGetProductsByIdQuery,
+} = api;

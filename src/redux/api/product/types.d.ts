@@ -5,4 +5,6 @@ namespace PRODUCT {
   type CreateProductRequest = IProduct;
   type GetProductResponse = IProducts[];
   type GetProductRequest = void;
+  type GetProductByIdResponse = IProducts;
+  type GetProductByIdRequest = string | string[];
 }
