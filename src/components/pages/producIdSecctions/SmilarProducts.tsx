@@ -10,16 +10,16 @@ import React, { useState } from "react";
 const SmilarProducts = () => {
   const { data: poducts } = useGetProductsQuery();
   const [isEnter, setIsEnter] = useState<boolean>(false);
-  const [curentIndex, setCurrentIndex] = useState<number>(0);
+  const [curentIndex, setCurrentIndex] = useState<string>("");
   const { category } = useProductDetailsStore();
   const router = useRouter();
-  const onMouseEnter = (index: number) => {
+  const onMouseEnter = (id: string) => {
     setIsEnter(true);
-    setCurrentIndex(index);
+    setCurrentIndex(id);
   };
   const onMouseLeave = () => {
     setIsEnter(false);
-    setCurrentIndex(0);
+    setCurrentIndex("");
   };
   const filtered = poducts?.filter((item, index) => item.category === category);
   return (
@@ -56,7 +56,7 @@ const SmilarProducts = () => {
                     className="text-black truncate font-semibold hover:underline cursor-pointer"
                     onClick={() => router.push(`/products/${product.id}`)}
                   >
-                    {product.imageUrl}
+                    {product.name }
                   </p>
                   <span className="text-red-500 font-semibold flex items-center gap-x-1">
                     ${product.price}

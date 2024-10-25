@@ -7,4 +7,6 @@ namespace PRODUCT {
   type GetProductRequest = void;
   type GetProductByIdResponse = IProducts;
   type GetProductByIdRequest = string | string[];
+  type DeleteProductByIdResponse = void;
+  type DeleteProductByIdRequest = string | string[];
 }
