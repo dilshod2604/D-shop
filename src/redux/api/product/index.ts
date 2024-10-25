@@ -44,6 +44,24 @@ const api = index.injectEndpoints({
       }),
       invalidatesTags: ["product"],
     }),
+    editeProduct: build.mutation<
+      PRODUCT.EditProductByIdResponse,
+      PRODUCT.EditProductByIdRequest
+    >({
+      query: (product) => ({
+        url: `/api/product/edit/${product.id}`,
+        method: "PUT",
+        body: {
+          name: product.name,
+          price: product.price,
+          imageUrl: product.imageUrl,
+          rating: product.rating,
+          category: product.category,
+          views: product.views,
+        },
+      }),
+      invalidatesTags: ["product"],
+    }),
   }),
 });
 export const {
@@ -51,4 +69,5 @@ export const {
   useGetProductsQuery,
   useGetProductsByIdQuery,
   useDeleteProductMutation,
+  useEditeProductMutation,
 } = api;

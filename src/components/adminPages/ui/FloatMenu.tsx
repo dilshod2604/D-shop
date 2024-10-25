@@ -8,6 +8,7 @@ import { BiSolidEdit } from "react-icons/bi";
 import { FiMenu } from "react-icons/fi";
 import { MdDelete } from "react-icons/md";
 import { RiCloseLargeFill } from "react-icons/ri";
+import UpdateProduct from "./UpdateProduct";
 
 interface FloatMenuProps {
   product: IProducts;
@@ -16,7 +17,7 @@ const FloatMenu: FC<FloatMenuProps> = ({ product }) => {
   const [deleteProduct] = useDeleteProductMutation();
   const [productId, setId] = useState<string>("");
   const [open, setOpen] = useState<boolean>(false);
-  const {close,isOpen,setIsOpen} = useUpdateProductStore();
+  const { close, isOpen, setIsOpen } = useUpdateProductStore();
 
   const openFloat = (id: string) => {
     if (productId !== id) {
@@ -67,17 +68,18 @@ const FloatMenu: FC<FloatMenuProps> = ({ product }) => {
           />
         </Popconfirm>
         <BiSolidEdit
+          onClick={() => setIsOpen(true)}
           size={25}
           className="text-blue-500  hover:scale-110 hover:opacity-75 transition cursor-pointer"
         />
       </FloatButton.Group>
       <Modal
-       title="Create new product"
-       open={isOpen}
-       onCancel={() => close(false)}
-       footer={null}
+        title="Edit product"
+        open={isOpen}
+        onCancel={() => close(false)}
+        footer={null}
       >
-        
+        <UpdateProduct product={product} />
       </Modal>
     </>
   );

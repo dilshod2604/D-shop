@@ -1,9 +1,10 @@
 "use client";
 import { categoryOptions } from "@/constants/links";
-import { useCreateProducMutation } from "@/redux/api/product";
+import { useEditeProductMutation } from "@/redux/api/product";
 import { useAddProductStore } from "@/store/useAddProductStore";
+import { IProducts } from "@/types/sheme";
 import { Select } from "antd";
-import React, { ChangeEvent, useState } from "react";
+import React, { ChangeEvent, FC, useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { CiImageOn } from "react-icons/ci";
 interface InputValue {
@@ -12,12 +13,15 @@ interface InputValue {
   rating: string;
   views: number;
 }
-const UpdateProduct = () => {
+interface UpdateProductProps {
+  product: IProducts;
+}
+const UpdateProduct: FC<UpdateProductProps> = ({ product }) => {
   const { close } = useAddProductStore();
   const [image, setImage] = useState<string>("");
   const [category, setCategory] = useState<string>("");
   const { register, handleSubmit } = useForm<InputValue>();
-  const [createProduct] = useCreateProducMutation();
+  const [editProduct] = useEditeProductMutation();
   //image
   const handleFileChange = (event: ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
@@ -40,7 +44,8 @@ const UpdateProduct = () => {
   ///create
   const onSubmit: SubmitHandler<InputValue> = async (value) => {
     try {
-      const product = {
+      const updatedProduct = {
+        id: product.id,
         name: value.name,
         price: Number(value.price),
         imageUrl: image,
@@ -49,7 +54,7 @@ const UpdateProduct = () => {
         views: Number(value.views),
       };
 
-      await createProduct(product);
+      await editProduct(updatedProduct);
       close(false);
     } catch (error) {
       console.log(error);
@@ -106,7 +111,7 @@ const UpdateProduct = () => {
           type="submit"
           className="w-full bg-sky-600 py-2 flex items-center justify-center rounded-md text-white font-bold hover:opacity-75 hover:scale-110 transition"
         >
-          Create
+          Update
         </button>
       </form>
     </div>
