@@ -1,5 +1,6 @@
 import { api as index } from "..";
 import { CART } from "./types";
+
 const api = index.injectEndpoints({
   endpoints: (build) => ({
     addProductToCart: build.mutation<
@@ -7,15 +8,23 @@ const api = index.injectEndpoints({
       CART.AddCartProductRequest
     >({
       query: (data) => ({
-        url: `/api/product/cart${data.product_id}`,
+        url: `/api/product/cart/add`,
         method: "POST",
-        body: {
-          userId: data.user_id,
-          quantity: data.quantity,
-        },
+        body: data,
       }),
       invalidatesTags: ["cart"],
     }),
+    getCartProducts: build.query<
+      CART.GetCartProductResponse,
+      CART.GetCartProductRequest
+    >({
+      query: (userId) => ({
+        url: `/api/product/cart/get?userId=${userId}`,
+        method: "GET",
+      }),
+      providesTags: ["cart"],
+    }),
   }),
 });
-export const { useAddProductToCartMutation } = api;
+
+export const { useAddProductToCartMutation, useGetCartProductsQuery } = api;

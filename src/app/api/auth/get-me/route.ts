@@ -24,7 +24,6 @@ export const GET = async () => {
         id: idNumber,
       },
     });
-    console.log("me",me);
 
     if (!me) {
       return NextResponse.json(

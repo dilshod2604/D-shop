@@ -1,15 +1,13 @@
 "use client";
-import Rating from "@/components/ui/Rating";
-import {
-  useGetProductsByIdQuery,
-  useGetProductsQuery,
-} from "@/redux/api/product";
+import { useGetProductsByIdQuery } from "@/redux/api/product";
 import { useParams } from "next/navigation";
 import React, { useEffect } from "react";
 import { FiPlus, FiMinus } from "react-icons/fi";
 import { FaRegHeart } from "react-icons/fa";
 import { Rate } from "antd";
 import { useProductDetailsStore } from "@/store/useProductDitailsStore";
+import { useAddProductToCartMutation } from "@/redux/api/cart";
+import { useGetMeQuery } from "@/redux/api/auth";
 const ProductDetails = () => {
   const { productId } = useParams();
   const { data: product } = useGetProductsByIdQuery(productId);
@@ -17,7 +15,23 @@ const ProductDetails = () => {
   useEffect(() => {
     setCategory(product?.category!);
   }, [product]);
+  //add to cart
+  const [addProductsToCart] = useAddProductToCartMutation();
+  //get user
+  const { data: me } = useGetMeQuery();
 
+  const AddToCart = async () => {
+    try {
+      const cartProduct = {
+        userId: me?.id!,
+        productId: productId,
+        quantity: 0,
+      };
+      await addProductsToCart(cartProduct);
+    } catch (error) {
+      console.log(error);
+    }
+  };
   return (
     <section className="pt-[100px]">
       <div className="container">
@@ -57,7 +71,10 @@ const ProductDetails = () => {
                   className="text-black px-2 hover:bg-red-500 hover:text-white traansition border-l border-neutral-700"
                 />
               </div>
-              <button className="bg-red-500 px-4 py-2 flex items-center justify-center text-white font-bold hover:opacity-75 hover:scale-110 rounded-md">
+              <button
+                className="bg-red-500 px-4 py-2 flex items-center justify-center text-white font-bold hover:opacity-75 hover:scale-110 rounded-md"
+                onClick={AddToCart}
+              >
                 Buy Now
               </button>
               <FaRegHeart

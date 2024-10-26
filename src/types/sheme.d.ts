@@ -31,7 +31,25 @@ export interface IMe {
   photo: string;
 }
 export interface IAddCart {
-  user_id: number;
-  product_id: string;
+  userId: number | undefined;
+  productId: string | string[];
   quantity: number;
+}
+
+interface Product {
+  id: string;           
+  name: string;       
+  price: number;       
+  imageUrl: string;
+  category: string;      
+}
+
+export interface ICartItem {
+  id: string;            
+  createdAt: string;    
+  updatedAt: string;     
+  userId: number;         
+  productId: string;  
+  product: Product;      
+  quantity: number;      
 }
