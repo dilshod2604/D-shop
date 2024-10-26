@@ -9,6 +9,7 @@ export const GET = async () => {
     if (!myid) {
       return NextResponse.json({ message: "id is not found" }, { status: 404 });
     }
+    
 
     const idNumber = Number(myid);
     if (isNaN(idNumber)) {
@@ -23,6 +24,7 @@ export const GET = async () => {
         id: idNumber,
       },
     });
+    console.log("me",me);
 
     if (!me) {
       return NextResponse.json(

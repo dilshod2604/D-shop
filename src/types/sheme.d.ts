@@ -30,3 +30,8 @@ export interface IMe {
   password: string;
   photo: string;
 }
+export interface IAddCart {
+  user_id: number;
+  product_id: string;
+  quantity: number;
+}

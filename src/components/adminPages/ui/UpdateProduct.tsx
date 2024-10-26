@@ -1,28 +1,35 @@
 "use client";
 import { categoryOptions } from "@/constants/links";
 import { useEditeProductMutation } from "@/redux/api/product";
-import { useAddProductStore } from "@/store/useAddProductStore";
+import { useUpdateProductStore } from "@/store/useUpdateProductStore";
 import { IProducts } from "@/types/sheme";
-import { Select } from "antd";
-import React, { ChangeEvent, FC, useState } from "react";
-import { SubmitHandler, useForm } from "react-hook-form";
+import { Button, Form, Input, InputNumber, Select } from "antd";
+import React, { ChangeEvent, FC, useEffect, useState } from "react";
 import { CiImageOn } from "react-icons/ci";
-interface InputValue {
-  name: string;
-  price: number;
-  rating: string;
-  views: number;
-}
+
 interface UpdateProductProps {
   product: IProducts;
 }
+
 const UpdateProduct: FC<UpdateProductProps> = ({ product }) => {
-  const { close } = useAddProductStore();
-  const [image, setImage] = useState<string>("");
-  const [category, setCategory] = useState<string>("");
-  const { register, handleSubmit } = useForm<InputValue>();
-  const [editProduct] = useEditeProductMutation();
-  //image
+  const { close } = useUpdateProductStore();
+  const [form] = Form.useForm(); 
+  const [image, setImage] = useState<string>(product.imageUrl || "");
+  const [editProduct, { isLoading }] = useEditeProductMutation();
+
+  useEffect(() => {
+    if (product) {
+      setImage(product.imageUrl || "");
+      form.setFieldsValue({
+        name: product.name,
+        price: product.price,
+        rating: product.rating,
+        views: product.views,
+        category: product.category,
+      });
+    }
+  }, [product, form]); 
+
   const handleFileChange = (event: ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
     if ((file && file.type === "image/png") || file?.type === "image/jpeg") {
@@ -36,30 +43,13 @@ const UpdateProduct: FC<UpdateProductProps> = ({ product }) => {
       alert("Please select a PNG or JPG file.");
     }
   };
-  //category
-  const handleChange = (value: string) => {
-    setCategory(value);
+
+  const onFinish = async(values: any) => {
+    console.log(values);
+    await editProduct({ ...values,imageUrl:image });
+    close(false);
   };
 
-  ///create
-  const onSubmit: SubmitHandler<InputValue> = async (value) => {
-    try {
-      const updatedProduct = {
-        id: product.id,
-        name: value.name,
-        price: Number(value.price),
-        imageUrl: image,
-        rating: Number(value.rating),
-        category: category,
-        views: Number(value.views),
-      };
-
-      await editProduct(updatedProduct);
-      close(false);
-    } catch (error) {
-      console.log(error);
-    }
-  };
   return (
     <div className="flex gap-x-5 justify-center">
       <div className="relative flex group items-center justify-center w-[200px] h-[300px] overflow-hidden rounded-md border">
@@ -68,52 +58,49 @@ const UpdateProduct: FC<UpdateProductProps> = ({ product }) => {
         ) : (
           <CiImageOn size={100} />
         )}
-
         <input
           type="file"
-          className="absolute border  w-[150px] h-[150px] z-10 opacity-0 cursor-pointer "
+          className="absolute border w-[150px] h-[150px] z-10 opacity-0 cursor-pointer"
           accept="image/png, image/jpeg"
           onChange={handleFileChange}
         />
         <button className="absolute flex flex-col items-center justify-center w-full h-full opacity-0 group-hover:opacity-100 group-hover:bg-neutral-950/75 transition focus:outline-none"></button>
       </div>
-      <form className="flex flex-col gap-y-2" onSubmit={handleSubmit(onSubmit)}>
-        <input
-          type="text"
-          {...register("name", { required: true })}
-          className="bg-white border rounded-md px-3 py-2 w-full focus:outline-none"
-          placeholder="Name"
-        />
-        <input
-          {...register("price", { required: true })}
-          type="number"
-          className="bg-white border rounded-md px-3 py-2 w-full focus:outline-none"
-          placeholder="Price"
-        />
-        <input
-          {...register("rating", { required: true })}
-          type="text"
-          className="bg-white border rounded-md px-3 py-2 w-full focus:outline-none"
-          placeholder="Rating"
-        />
-        <input
-          {...register("views", { required: true })}
-          type="number"
-          className="bg-white border rounded-md px-3 py-2 w-full focus:outline-none"
-          placeholder="Views"
-        />
-        <Select
-          options={categoryOptions}
-          placeholder="Category"
-          onChange={handleChange}
-        />
-        <button
-          type="submit"
-          className="w-full bg-sky-600 py-2 flex items-center justify-center rounded-md text-white font-bold hover:opacity-75 hover:scale-110 transition"
+      <Form form={form} className="flex flex-col gap-y-1" onFinish={onFinish}>
+        <Form.Item
+          name="name"
+          rules={[{ required: true, message: "Please fill in the input" }]}
         >
+          <Input placeholder="Name" />
+        </Form.Item>
+        <Form.Item
+          name="price"
+          rules={[{ required: true, message: "Please fill in the input" }]}
+        >
+          <InputNumber placeholder="Price" />
+        </Form.Item>
+        <Form.Item
+          name="rating"
+          rules={[{ required: true, message: "Please fill in the input" }]}
+        >
+          <InputNumber placeholder="Rating" />
+        </Form.Item>
+        <Form.Item
+          name="views"
+          rules={[{ required: true, message: "Please fill in the input" }]}
+        >
+          <InputNumber placeholder="Views" />
+        </Form.Item>
+        <Form.Item
+          name="category"
+          rules={[{ required: true, message: "Please fill in the input" }]}
+        >
+          <Select options={categoryOptions} placeholder="Category" />
+        </Form.Item>
+        <Button htmlType="submit" type="primary" loading={isLoading}>
           Update
-        </button>
-      </form>
+        </Button>
+      </Form>
     </div>
   );
 };

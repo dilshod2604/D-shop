@@ -5,6 +5,7 @@ import { prisma } from "@/lib/prisma";
 export const POST = async (req: Request) => {
   try {
     const { email, password } = await req.json();
+    console.log(email, password );
 
     const user = await prisma.user.findUnique({
       where: {
@@ -13,7 +14,7 @@ export const POST = async (req: Request) => {
     });
     if (!user) {
       return NextResponse.json(
-        { error: "Invalid credentials" },
+        { error: "User is not found" },
         { status: 401 }
       );
     }
@@ -21,7 +22,7 @@ export const POST = async (req: Request) => {
     const isPasswordValid = await bcrypt.compare(password, user.password);
     if (!isPasswordValid) {
       return NextResponse.json(
-        { error: "Invalid credentials" },
+        { error: "Please write the correct password" },
         { status: 401 }
       );
     }
