@@ -27,16 +27,18 @@ const Navbar = () => {
               {link.name}
             </Link>
           )}
-          {!me?.email && (
-            <Link
-              href={"/auth/sign-up"}
-              className="text-neutral-600 font-normal transition   "
-            >
-              Sign up
-            </Link>
-          )}
         </li>
       ))}
+      {!me?.email && (
+        <li>
+          <Link
+            href={"/auth/sign-up"}
+            className="text-neutral-600 font-normal transition   "
+          >
+            Sign up
+          </Link>
+        </li>
+      )}
     </ul>
   );
 };
