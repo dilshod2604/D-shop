@@ -138,3 +138,18 @@ const UpdateProduct: FC<UpdateProductProps> = ({ product }) => {
 };
 
 export default UpdateProduct;
+
+
+import { useEditProductStore } from "@/store/useEditProductStore";
+import React, { FC } from "react";
+
+const UpdateProduct: FC = () => {
+  const { editProduct } = useEditProductStore();
+  return (
+    <div>
+      <p>{editProduct.name}</p>
+    </div>
+  );
+};
+
+export default UpdateProduct;

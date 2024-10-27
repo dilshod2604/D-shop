@@ -9,20 +9,24 @@ import { FiMenu } from "react-icons/fi";
 import { MdDelete } from "react-icons/md";
 import { RiCloseLargeFill } from "react-icons/ri";
 import UpdateProduct from "./UpdateProduct";
+import { useEditProductStore } from "@/store/useEditProductStore";
 
 interface FloatMenuProps {
+  id: string;
   product: IProducts;
 }
 const FloatMenu: FC<FloatMenuProps> = ({ product }) => {
   const [deleteProduct] = useDeleteProductMutation();
-  const [productId, setId] = useState<string>("");
+  const { editId, setEditId, setEditProducts } = useEditProductStore();
+
   const [open, setOpen] = useState<boolean>(false);
   const { close, isOpen, setIsOpen } = useUpdateProductStore();
 
-  const openFloat = (id: string) => {
-    if (productId !== id) {
-      setId(id);
+  const openFloat = (product: IProducts) => {
+    if (editId! !== product.id) {
+      setEditId(product.id);
       setOpen(true);
+      setEditProducts(product);
     } else {
       setOpen(!open);
     }
@@ -37,22 +41,23 @@ const FloatMenu: FC<FloatMenuProps> = ({ product }) => {
   const censelDeleting: PopconfirmProps["onCancel"] = (e) => {
     console.log(e);
   };
+
   return (
     <>
       <FloatButton.Group
         className="absolute bottom-2 right-2 "
-        open={open && productId === product.id}
+        open={open && editId === product.id}
         placement="left"
         trigger="click"
         shape="circle"
         icon={
-          open && productId === product.id ? (
+          open && editId === product.id ? (
             <RiCloseLargeFill size={25} className="text-black" />
           ) : (
             <FiMenu size={25} className="text-black" />
           )
         }
-        onClick={() => openFloat(product.id)}
+        onClick={() => openFloat(product)}
       >
         <Popconfirm
           title="Delete the product"
@@ -73,13 +78,14 @@ const FloatMenu: FC<FloatMenuProps> = ({ product }) => {
           className="text-blue-500  hover:scale-110 hover:opacity-75 transition cursor-pointer"
         />
       </FloatButton.Group>
+
       <Modal
         title="Edit product"
         open={isOpen}
         onCancel={() => close(false)}
         footer={null}
       >
-        <UpdateProduct product={product} />
+        <UpdateProduct />
       </Modal>
     </>
   );

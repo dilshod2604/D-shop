@@ -1,34 +1,31 @@
 "use client";
 import { categoryOptions } from "@/constants/links";
 import { useEditeProductMutation } from "@/redux/api/product";
+import { useEditProductStore } from "@/store/useEditProductStore";
 import { useUpdateProductStore } from "@/store/useUpdateProductStore";
-import { IProducts } from "@/types/sheme";
 import { Button, Form, Input, InputNumber, Select } from "antd";
 import React, { ChangeEvent, FC, useEffect, useState } from "react";
 import { CiImageOn } from "react-icons/ci";
 
-interface UpdateProductProps {
-  product: IProducts;
-}
-
-const UpdateProduct: FC<UpdateProductProps> = ({ product }) => {
+const UpdateProduct = () => {
   const { close } = useUpdateProductStore();
-  const [form] = Form.useForm(); 
-  const [image, setImage] = useState<string>(product.imageUrl || "");
-  const [editProduct, { isLoading }] = useEditeProductMutation();
+  const { editProduct } = useEditProductStore();
+  const [form] = Form.useForm();
+  const [image, setImage] = useState<string>(editProduct.imageUrl || "");
+  const [editProducts, { isLoading }] = useEditeProductMutation();
 
   useEffect(() => {
-    if (product) {
-      setImage(product.imageUrl || "");
+    if (editProduct) {
+      setImage(editProduct.imageUrl || "");
       form.setFieldsValue({
-        name: product.name,
-        price: product.price,
-        rating: product.rating,
-        views: product.views,
-        category: product.category,
+        name: editProduct.name,
+        price: editProduct.price,
+        rating: editProduct.rating,
+        views: editProduct.views,
+        category: editProduct.category,
       });
     }
-  }, [product, form]); 
+  }, [editProduct, form]);
 
   const handleFileChange = (event: ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
@@ -44,10 +41,10 @@ const UpdateProduct: FC<UpdateProductProps> = ({ product }) => {
     }
   };
 
-  const onFinish = async(values: any) => {
+  const onFinish = async (values: any) => {
     console.log(values);
-    await editProduct({ ...values,imageUrl:image });
-    close(false);
+    // await editProduct({ ...values,imageUrl:image });
+    // close(false);
   };
 
   return (
@@ -66,7 +63,12 @@ const UpdateProduct: FC<UpdateProductProps> = ({ product }) => {
         />
         <button className="absolute flex flex-col items-center justify-center w-full h-full opacity-0 group-hover:opacity-100 group-hover:bg-neutral-950/75 transition focus:outline-none"></button>
       </div>
-      <Form form={form} className="flex flex-col gap-y-1" onFinish={onFinish}>
+      <Form
+        className="flex flex-col gap-y-1"
+        // initialValues={editProduct}
+        onFinish={onFinish}
+        form={form}
+      >
         <Form.Item
           name="name"
           rules={[{ required: true, message: "Please fill in the input" }]}

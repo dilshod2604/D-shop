@@ -8,6 +8,8 @@ import { Rate } from "antd";
 import { useProductDetailsStore } from "@/store/useProductDitailsStore";
 import { useAddProductToCartMutation } from "@/redux/api/cart";
 import { useGetMeQuery } from "@/redux/api/auth";
+import Zoom from "react-medium-image-zoom";
+import "react-medium-image-zoom/dist/styles.css";
 const ProductDetails = () => {
   const { productId } = useParams();
   const { data: product } = useGetProductsByIdQuery(productId);
@@ -38,11 +40,13 @@ const ProductDetails = () => {
         <div className="w-full flex gap-x-5 justify-center ">
           <div className="flex flex-col">
             <div className="flex items-center justify-center overflow-hidden max-w-[300px] h-[400px]  rounded-md">
-              <img
-                src={product?.imageUrl}
-                alt="cover"
-                className="w-full h-full"
-              />
+              <Zoom>
+                <img
+                  src={product?.imageUrl}
+                  alt="cover"
+                  className="w-full h-full"
+                />
+              </Zoom>
             </div>
           </div>
           <div className="flex flex-col  max-w-[400px] h-[400px]  rounded-md p-4 gap-y-5">

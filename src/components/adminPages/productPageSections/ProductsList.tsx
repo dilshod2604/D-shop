@@ -29,7 +29,7 @@ const ProductsList = () => {
                   </h1>
                   <p className="text-red-500">${product.price}</p>
                 </div>
-                <FloatMenu product={product} />
+                <FloatMenu id={product.id} product={product} />
               </div>
             ))}
           </div>
