@@ -25,14 +25,16 @@ const ProfileMenu = () => {
         <BsBox2 size={25} className="text-white" />
         <p className="text-white font-bold ">My order</p>
       </Link>
-    
-      <Link
-        href="/admin"
-        className="flex items-center gap-x-3 py-2 px-2 rounded-md border hover:scale-110 "
-      >
-        <RiAdminLine size={25} className="text-white" />
-        <p className="text-white font-bold ">Admin</p>
-      </Link>
+      {me?.role === "ADMIN" && (
+        <Link
+          href="/admin"
+          className="flex items-center gap-x-3 py-2 px-2 rounded-md border hover:scale-110 "
+        >
+          <RiAdminLine size={25} className="text-white" />
+          <p className="text-white font-bold ">Admin</p>
+        </Link>
+      )}
+
       <button className="text-white font-bold flex items-center gap-x-3 py-2 px-2 border hover:scale-110 rounded-md ">
         <HiOutlineLogout size={25} className="text-white" />
         <p className="text-white font-bold ">Logout</p>

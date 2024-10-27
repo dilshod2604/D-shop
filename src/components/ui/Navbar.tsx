@@ -1,10 +1,12 @@
 "use client";
 import { links } from "@/constants/links";
+import { useGetMeQuery } from "@/redux/api/auth";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import React from "react";
 
 const Navbar = () => {
+  const { data: me } = useGetMeQuery();
   const pathName = usePathname();
   return (
     <ul className="flex items-center  gap-x-[48px] text-black max-lg:hidden">
@@ -23,6 +25,14 @@ const Navbar = () => {
               className="text-neutral-600 font-normal transition   "
             >
               {link.name}
+            </Link>
+          )}
+          {!me?.email && (
+            <Link
+              href={"/auth/sign-up"}
+              className="text-neutral-600 font-normal transition   "
+            >
+              Sign up
             </Link>
           )}
         </li>

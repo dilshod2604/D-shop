@@ -22,10 +22,6 @@ export const links: {
     name: "About",
     href: "/about",
   },
-  {
-    name: "Sign-up",
-    href: "/auth/sign-up",
-  },
 ];
 
 export const sideBarLinks: { name: string; href: string }[] = [
@@ -91,26 +87,29 @@ export const categories: ICategories[] = [
   },
 ];
 
-export const categoryOptions=[
+export const categoryOptions = [
   {
-    value:"phones",
-    label:"Phones"
+    value: "phones",
+    label: "Phones",
   },
   {
-    value:"computers",
-    label:"Computers"
-  }, {
-    value:"smart watch",
-    label:"Smart watch"
-  }, {
-    value:"camera",
-    label:"Camera"
-  }, {
-    value:"headphones",
-    label:"HeadPhones"
-  }, {
-    value:"gaming",
-    label:"Gaming"
+    value: "computers",
+    label: "Computers",
   },
-]
-
+  {
+    value: "smart watch",
+    label: "Smart watch",
+  },
+  {
+    value: "camera",
+    label: "Camera",
+  },
+  {
+    value: "headphones",
+    label: "HeadPhones",
+  },
+  {
+    value: "gaming",
+    label: "Gaming",
+  },
+];

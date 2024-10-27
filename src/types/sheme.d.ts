@@ -27,6 +27,7 @@ export interface IMe {
   id: number;
   name: string;
   email: string;
+  role: string;
   password: string;
   photo: string;
 }
@@ -37,19 +38,19 @@ export interface IAddCart {
 }
 
 interface Product {
-  id: string;           
-  name: string;       
-  price: number;       
+  id: string;
+  name: string;
+  price: number;
   imageUrl: string;
-  category: string;      
+  category: string;
 }
 
 export interface ICartItem {
-  id: string;            
-  createdAt: string;    
-  updatedAt: string;     
-  userId: number;         
-  productId: string;  
-  product: Product;      
-  quantity: number;      
+  id: string;
+  createdAt: string;
+  updatedAt: string;
+  userId: number;
+  productId: string;
+  product: Product;
+  quantity: number;
 }
