@@ -54,3 +54,14 @@ export interface ICartItem {
   product: Product;
   quantity: number;
 }
+
+interface IFavorites {
+  userId: number;
+  productId: string;
+}
+interface IFavoriteMovie {
+  id: number;
+  isFavorite: boolean;
+  productId: string;
+  userId: number;
+}

@@ -43,6 +43,7 @@ model FavoriteProduct {
   id        String   @id @default(cuid())
   userId    Int
   productId String
+  isFavorite Boolean
   createdAt DateTime @default(now())
 
   user    User    @relation(fields: [userId], references: [id])

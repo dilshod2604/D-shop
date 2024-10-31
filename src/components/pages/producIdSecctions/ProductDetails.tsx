@@ -3,7 +3,6 @@ import { useGetProductsByIdQuery } from "@/redux/api/product";
 import { useParams } from "next/navigation";
 import React, { useEffect } from "react";
 import { FiPlus, FiMinus } from "react-icons/fi";
-import { FaRegHeart } from "react-icons/fa";
 import { Rate } from "antd";
 import { useProductDetailsStore } from "@/store/useProductDitailsStore";
 import { useAddProductToCartMutation } from "@/redux/api/cart";
@@ -11,6 +10,7 @@ import { useGetMeQuery } from "@/redux/api/auth";
 import Zoom from "react-medium-image-zoom";
 import "react-medium-image-zoom/dist/styles.css";
 import DetailsSkeleton from "@/components/ui/DetailsSkeleton";
+import AddFavorites from "@/components/shared/AddFavorites";
 const ProductDetails = () => {
   const { productId } = useParams();
 
@@ -28,7 +28,7 @@ const ProductDetails = () => {
     try {
       const cartProduct = {
         userId: me?.id!,
-        productId: productId, 
+        productId: productId,
         quantity: 0,
       };
       await addProductsToCart(cartProduct);
@@ -87,10 +87,7 @@ const ProductDetails = () => {
               >
                 Buy Now
               </button>
-              <FaRegHeart
-                size={40}
-                className="text-black border border-neutral-800 border-1 rounded-md p-2  hover:text-blue-500 hover:border-blue-500 hover:scale-110 transition"
-              />
+              <AddFavorites productId={product?.id!} />
             </div>
           </div>
         </div>
