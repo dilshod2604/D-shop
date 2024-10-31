@@ -5,6 +5,8 @@ export const GET = async (req: Request) => {
   try {
     const { searchParams } = new URL(req.url);
     const query = searchParams.get("query");
+    console.log("query", query);
+
     if (!query) {
       return NextResponse.json({
         status: 400,
@@ -32,7 +34,7 @@ export const GET = async (req: Request) => {
       status: 200,
     });
   } catch (error) {
-    console.log(error);
+    console.log("error", error);
     return NextResponse.json({ status: 500, message: "Internal server error" });
   }
 };

@@ -84,7 +84,7 @@
   
   /* Dark theme */
   @media (prefers-color-scheme: dark) {
-    body {
+    .body {
       background-color: hsl(223, 10%, 10%);
       color: hsl(223, 10%, 90%);
     }

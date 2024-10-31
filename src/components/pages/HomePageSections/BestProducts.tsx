@@ -10,16 +10,16 @@ import React, { useState } from "react";
 const BestProducts = () => {
   const { data: poducts } = useGetProductsQuery();
   const [isEnter, setIsEnter] = useState<boolean>(false);
-  const [curentIndex, setCurrentIndex] = useState<number>(0);
+  const [curentIndex, setCurrentIndex] = useState<string>("");
   const router = useRouter();
 
-  const onMouseEnter = (index: number) => {
+  const onMouseEnter = (id: string) => {
     setIsEnter(true);
-    setCurrentIndex(index);
+    setCurrentIndex(id);
   };
   const onMouseLeave = () => {
     setIsEnter(false);
-    setCurrentIndex(0);
+    setCurrentIndex("");
   };
 
   return (
@@ -67,7 +67,6 @@ const BestProducts = () => {
                   </p>
                   <span className="text-red-500 font-semibold flex items-center gap-x-1">
                     ${product.price}
-                    
                   </span>
                   <Rating rate={product.rating} />
                 </div>

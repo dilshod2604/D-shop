@@ -1,5 +1,4 @@
 "use client";
-import { useGetCategoriesQuery } from "@/redux/api/category";
 import React from "react";
 import { categories } from "../../../constants/links";
 

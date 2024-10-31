@@ -11,7 +11,10 @@ const SearchTrack: FC<SearchTrackProps> = ({ className }) => {
   const [searchQuery, setSearchQuery] = useState<string>("");
   const [hasFocus, setHasFocus] = useState(false);
   const router = useRouter();
-
+  const hasOnFocus = () => {
+    router.push("/search");
+    setHasFocus(true);
+  };
   useEffect(() => {
     if (hasFocus) {
       if (searchQuery) {
@@ -27,11 +30,12 @@ const SearchTrack: FC<SearchTrackProps> = ({ className }) => {
       <div className="flex items-center  gap-x-4 bg-neutral-200 px-4 rounded-md">
         <DebounceInput
           type="text"
-          debounceTimeout={300}
+          debounceTimeout={1000}
           value={searchQuery}
           placeholder="What are you looking for?"
           onChange={(e) => setSearchQuery(e.target.value)}
           className="flex items-center px-5 py-1 rounded-md focus:outline-none bg-neutral-200 border"
+          onClick={hasOnFocus}
         />
         <CiSearch size={20} className="text-black" />
       </div>

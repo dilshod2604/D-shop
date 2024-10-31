@@ -1,9 +1,12 @@
-import React from 'react'
+import React from "react";
+import SearchResult from "./searchQuerySections/SearchResult";
 
 const SearchQuery = () => {
   return (
-    <div>SearchQuery</div>
-  )
-}
+    <>
+      <SearchResult />
+    </>
+  );
+};
 
-export default SearchQuery
+export default SearchQuery;

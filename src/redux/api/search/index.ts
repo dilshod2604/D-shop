@@ -6,8 +6,8 @@ const api = index.injectEndpoints({
       SEARCH.SearchProdctsResponse,
       SEARCH.SearchProdctsRequest
     >({
-      query: (query) => `search?query=${query}`,
-      providesTags:["search"]
+      query: (query) => `/api/product/search?query=${query}`,
+      providesTags: ["search"],
     }),
   }),
 });
