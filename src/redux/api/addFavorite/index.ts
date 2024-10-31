@@ -23,6 +23,16 @@ const api = index.injectEndpoints({
       }),
       providesTags: ["favorite"],
     }),
+    getFavoriteProducts: build.query<
+      ADDFAVORITE.GetFavoriteProductResponse,
+      ADDFAVORITE.GetFavoriteProductRequest
+    >({
+      query: (userId) => ({
+        url: `/api/product/get-favorites?userId=${userId}`,
+        method: "GET",
+      }),
+      providesTags: ["favorite"],
+    }),
   }),
 });
-export const { useAddFavotitesMutation, useGetFavoritesByIdQuery } = api;
+export const { useAddFavotitesMutation, useGetFavoritesByIdQuery,useGetFavoriteProductsQuery } = api;

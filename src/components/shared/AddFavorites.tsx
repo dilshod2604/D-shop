@@ -33,13 +33,13 @@ const AddFavorites: FC<AddFavoritesProps> = ({ productId }) => {
       {favoriteProduct?.isFavorite ? (
         <FaHeart
           size={40}
-          className="text-red-500 border border-neutral-800 border-1 rounded-md p-2  hover:text-red-500 hover:border-red  -500 hover:scale-110 transition"
+          className="text-red-500 border border-neutral-800 border-1 rounded-md p-2  hover:text-red-500 hover:border-red-500 hover:scale-110 transition cursor-pointer"
           onClick={addProdcutToFavorite}
         />
       ) : (
         <FaRegHeart
           size={40}
-          className="text-black border border-neutral-800 border-1 rounded-md p-2  hover:text-blue-500 hover:border-blue-500 hover:scale-110 transition"
+          className="text-black border border-neutral-800 border-1 rounded-md p-2  hover:text-blue-500 hover:border-blue-500 hover:scale-110 transition cursor-pointer"
           onClick={addProdcutToFavorite}
         />
       )}

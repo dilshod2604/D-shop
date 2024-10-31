@@ -59,9 +59,19 @@ interface IFavorites {
   userId: number;
   productId: string;
 }
-interface IFavoriteMovie {
+interface IFavoriteProduct {
   id: number;
   isFavorite: boolean;
   productId: string;
   userId: number;
+}
+
+interface IFavoritesItems {
+  id: string;
+  createdAt: string;
+  updatedAt: string;
+  isFavorite: boolean;
+  userId: number;
+  productId: string;
+  product: Product;
 }

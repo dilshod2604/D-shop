@@ -1,8 +1,10 @@
-import { IFavoriteMovie, IFavorites } from "@/types/sheme";
+import { IFavoriteProduct, IFavoritesItems } from "@/types/sheme";
 
 namespace ADDFAVORITE {
   type AddFavoritesResponse = void;
   type AddFavoritesRequest = IFavorites;
-  type GetFavoritesByIdResponse = IFavoriteMovie;
+  type GetFavoritesByIdResponse = IFavoriteProduct;
   type GetFavoritesByIdRequest = string;
+  type GetFavoriteProductResponse = IFavoritesItems[];
+  type GetFavoriteProductRequest = number;
 }

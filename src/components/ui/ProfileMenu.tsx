@@ -6,6 +6,7 @@ import { BsBox2 } from "react-icons/bs";
 import { RiAdminLine } from "react-icons/ri";
 import { HiOutlineLogout } from "react-icons/hi";
 import { useGetMeQuery, useLogOutMutation } from "@/redux/api/auth";
+import { FaHeart } from "react-icons/fa";
 
 const ProfileMenu = () => {
   const [logOut] = useLogOutMutation();
@@ -30,6 +31,15 @@ const ProfileMenu = () => {
         <BsBox2 size={25} className="text-white" />
         <p className="text-white font-bold ">My order</p>
       </Link>
+      {me?.email && (
+        <Link
+          href="/favorites"
+          className="flex items-center gap-x-3 py-2 px-2 rounded-md border hover:scale-110 "
+        >
+          <FaHeart size={25} className="text-white" />
+          <p className="text-white font-bold ">My Favorites</p>
+        </Link>
+      )}
       {me?.role === "ADMIN" && (
         <Link
           href="/admin"
