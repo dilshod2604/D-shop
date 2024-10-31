@@ -13,7 +13,7 @@ interface InputValue {
 
 const SignInForm = () => {
   const router = useRouter();
-  const { register, handleSubmit } = useForm<InputValue>();
+  const { register, handleSubmit, reset } = useForm<InputValue>();
   const [signIn] = useSignInMutation();
 
   const onSubmit: SubmitHandler<InputValue> = async (value) => {
@@ -22,6 +22,7 @@ const SignInForm = () => {
         email: value.email,
         password: value.password,
       });
+      reset();
       router.push("/");
     } catch (error) {
       console.log(error);
@@ -63,12 +64,14 @@ const SignInForm = () => {
           Sign up with Google
         </button>
         <div className="flex items-center  justify-center gap-x-2 ">
-          <p className=" font-sm text-neutral-200 ">Already have account?</p>
+          <p className=" font-sm text-neutral-200 ">
+            If you do not have an account?
+          </p>
           <Link
             href="/auth/sign-up"
             className="text-white hover:underline font-bold"
           >
-            Log in
+            Sign Up
           </Link>
         </div>
       </div>

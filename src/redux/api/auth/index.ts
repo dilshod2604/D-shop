@@ -30,6 +30,7 @@ const api = index.injectEndpoints({
         url: "/api/auth/logout",
         method: "POST",
       }),
+      invalidatesTags: ["auth"],
     }),
   }),
 });

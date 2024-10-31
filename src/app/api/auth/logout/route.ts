@@ -4,9 +4,9 @@ import { NextResponse } from "next/server";
 export const POST = async () => {
   try {
     const cookieStore = cookies();
-
-    cookieStore.delete("user_id");
-
+    if (cookieStore.has("user_id")) {
+      cookieStore.delete("user_id");
+    }
     return NextResponse.json({
       status: 200,
       message: "Logged out successfully",

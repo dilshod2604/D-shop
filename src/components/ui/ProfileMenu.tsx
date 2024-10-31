@@ -10,7 +10,8 @@ import { useGetMeQuery, useLogOutMutation } from "@/redux/api/auth";
 const ProfileMenu = () => {
   const [logOut] = useLogOutMutation();
   const handleLogOut = async () => {
-    logOut();
+    const res = await logOut();
+    window.location.reload();
   };
   const { data: me } = useGetMeQuery();
   return (

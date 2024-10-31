@@ -1,10 +1,12 @@
 "use client";
 import { links } from "@/constants/links";
+import { useGetMeQuery } from "@/redux/api/auth";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import React from "react";
 
 const BurgerMenu = () => {
+  const { data: me } = useGetMeQuery();
   const pathName = usePathname();
   return (
     <div className="flex flex-col items-start">
@@ -28,6 +30,16 @@ const BurgerMenu = () => {
             )}
           </li>
         ))}
+        {!me?.email && (
+          <li>
+            <Link
+              href={"/auth/sign-up"}
+              className="text-white font-normal transition   "
+            >
+              Sign up
+            </Link>
+          </li>
+        )}
       </ul>
     </div>
   );
