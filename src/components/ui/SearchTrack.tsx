@@ -1,5 +1,6 @@
 "use client";
-import React, { FC, useState } from "react";
+import { useRouter } from "next/navigation";
+import React, { FC, useEffect, useState } from "react";
 import { DebounceInput } from "react-debounce-input";
 import { CiSearch } from "react-icons/ci";
 import { twMerge } from "tailwind-merge";
@@ -8,6 +9,19 @@ interface SearchTrackProps {
 }
 const SearchTrack: FC<SearchTrackProps> = ({ className }) => {
   const [searchQuery, setSearchQuery] = useState<string>("");
+  const [hasFocus, setHasFocus] = useState(false);
+  const router = useRouter();
+
+  useEffect(() => {
+    if (hasFocus) {
+      if (searchQuery) {
+        router.push(`/search/${searchQuery}`);
+      } else {
+        router.push("/search");
+      }
+    }
+  }, [searchQuery]);
+
   return (
     <div className={twMerge("max-sm:hidden", className)}>
       <div className="flex items-center  gap-x-4 bg-neutral-200 px-4 rounded-md">
