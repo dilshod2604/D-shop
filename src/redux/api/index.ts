@@ -5,7 +5,7 @@ import {
 } from "@reduxjs/toolkit/query/react";
 
 const BaseQuery = fetchBaseQuery({
-  baseUrl: "http://localhost:3000/",
+  baseUrl: "https://d-shop-dilshod2604s-projects.vercel.app/",
 });
 
 const baseQueryExtends: BaseQueryFn = async (arg, api, extraOptions) => {
