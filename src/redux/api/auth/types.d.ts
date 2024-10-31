@@ -9,4 +9,7 @@ namespace AUTH {
 
   type GetMeResponse = IMe;
   type GetMeRequest = void;
+  
+  type LogOutResponse = void;
+  type LogOutRequest = void;
 }

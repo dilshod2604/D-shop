@@ -18,13 +18,24 @@ const api = index.injectEndpoints({
       }),
       invalidatesTags: ["auth"],
     }),
-    getMe: build.query<AUTH.GetMeResponse,AUTH.GetMeRequest>({
+    getMe: build.query<AUTH.GetMeResponse, AUTH.GetMeRequest>({
       query: () => ({
         url: "/api/auth/get-me",
         method: "GET",
       }),
       providesTags: ["auth"],
     }),
+    logOut: build.mutation<AUTH.LogOutResponse, AUTH.LogOutRequest>({
+      query: () => ({
+        url: "/api/auth/logout",
+        method: "POST",
+      }),
+    }),
   }),
 });
-export const { useSignUpMutation, useSignInMutation, useGetMeQuery } = api;
+export const {
+  useSignUpMutation,
+  useSignInMutation,
+  useGetMeQuery,
+  useLogOutMutation,
+} = api;

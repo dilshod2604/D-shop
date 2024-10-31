@@ -5,9 +5,13 @@ import { LuUser2 } from "react-icons/lu";
 import { BsBox2 } from "react-icons/bs";
 import { RiAdminLine } from "react-icons/ri";
 import { HiOutlineLogout } from "react-icons/hi";
-import { useGetMeQuery } from "@/redux/api/auth";
+import { useGetMeQuery, useLogOutMutation } from "@/redux/api/auth";
 
 const ProfileMenu = () => {
+  const [logOut] = useLogOutMutation();
+  const handleLogOut = async () => {
+    logOut();
+  };
   const { data: me } = useGetMeQuery();
   return (
     <div className="flex flex-col gap-y-2">
@@ -35,10 +39,15 @@ const ProfileMenu = () => {
         </Link>
       )}
 
-      <button className="text-white font-bold flex items-center gap-x-3 py-2 px-2 border hover:scale-110 rounded-md ">
-        <HiOutlineLogout size={25} className="text-white" />
-        <p className="text-white font-bold ">Logout</p>
-      </button>
+      {me?.email && (
+        <button
+          className="text-white font-bold flex items-center gap-x-3 py-2 px-2 border hover:scale-110 rounded-md "
+          onClick={handleLogOut}
+        >
+          <HiOutlineLogout size={25} className="text-white" />
+          <p className="text-white font-bold ">Logout</p>
+        </button>
+      )}
     </div>
   );
 };
