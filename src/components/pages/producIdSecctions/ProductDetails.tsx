@@ -10,9 +10,11 @@ import { useAddProductToCartMutation } from "@/redux/api/cart";
 import { useGetMeQuery } from "@/redux/api/auth";
 import Zoom from "react-medium-image-zoom";
 import "react-medium-image-zoom/dist/styles.css";
+import DetailsSkeleton from "@/components/ui/DetailsSkeleton";
 const ProductDetails = () => {
   const { productId } = useParams();
-  const { data: product } = useGetProductsByIdQuery(productId);
+
+  const { data: product, isLoading } = useGetProductsByIdQuery(productId);
   const { setCategory } = useProductDetailsStore();
   useEffect(() => {
     setCategory(product?.category!);
@@ -26,7 +28,7 @@ const ProductDetails = () => {
     try {
       const cartProduct = {
         userId: me?.id!,
-        productId: productId,
+        productId: productId, 
         quantity: 0,
       };
       await addProductsToCart(cartProduct);
@@ -34,10 +36,14 @@ const ProductDetails = () => {
       console.log(error);
     }
   };
+  if (isLoading) {
+    return <DetailsSkeleton />;
+  }
+
   return (
     <section className="pt-[100px]">
       <div className="container">
-        <div className="w-full flex gap-x-5 justify-center ">
+        <div className="w-full flex gap-x-5 justify-center  max-md:flex-col max-md:items-center ">
           <div className="flex flex-col">
             <div className="flex items-center justify-center overflow-hidden max-w-[300px] h-[400px]  rounded-md">
               <Zoom>

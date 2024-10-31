@@ -26,7 +26,7 @@ export const menu: { name: string; icon: IconType; href: string }[] = [
 
 export const management: { name: string; icon: IconType; href: string }[] = [
   {
-    name: "Profucts",
+    name: "Products",
     icon: MdShoppingCart,
     href: "/admin/products",
   },

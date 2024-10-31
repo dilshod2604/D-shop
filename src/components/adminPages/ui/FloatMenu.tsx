@@ -2,7 +2,7 @@
 import { useDeleteProductMutation } from "@/redux/api/product";
 import { useUpdateProductStore } from "@/store/useUpdateProductStore";
 import { IProducts } from "@/types/sheme";
-import { FloatButton, Modal, Popconfirm, PopconfirmProps } from "antd";
+import { FloatButton, message, Modal, Popconfirm, PopconfirmProps } from "antd";
 import React, { FC, useState } from "react";
 import { BiSolidEdit } from "react-icons/bi";
 import { FiMenu } from "react-icons/fi";
@@ -34,6 +34,7 @@ const FloatMenu: FC<FloatMenuProps> = ({ product }) => {
   const handleDeleteProduct: PopconfirmProps["onConfirm"] = async () => {
     try {
       await deleteProduct(product.id);
+      message.success("The product is deleted");
     } catch (error) {
       console.log(error);
     }

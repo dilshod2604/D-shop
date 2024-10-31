@@ -3,13 +3,21 @@ import { categoryOptions } from "@/constants/links";
 import { useEditeProductMutation } from "@/redux/api/product";
 import { useEditProductStore } from "@/store/useEditProductStore";
 import { useUpdateProductStore } from "@/store/useUpdateProductStore";
-import { Button, Form, Input, InputNumber, Select } from "antd";
+import { Button, Form, Input, InputNumber, message, Select } from "antd";
 import React, { ChangeEvent, FC, useEffect, useState } from "react";
 import { CiImageOn } from "react-icons/ci";
 
+export interface InputValue {
+  category: string;
+  name: string;
+  price: number;
+  rating: number;
+  views: number;
+}
+
 const UpdateProduct = () => {
   const { close } = useUpdateProductStore();
-  const { editProduct } = useEditProductStore();
+  const { editProduct, editId } = useEditProductStore();
   const [form] = Form.useForm();
   const [image, setImage] = useState<string>(editProduct.imageUrl || "");
   const [editProducts, { isLoading }] = useEditeProductMutation();
@@ -41,10 +49,24 @@ const UpdateProduct = () => {
     }
   };
 
-  const onFinish = async (values: any) => {
-    console.log(values);
-    // await editProduct({ ...values,imageUrl:image });
-    // close(false);
+  const onFinish = async (values: InputValue) => {
+    try {
+      const updatedProduct = {
+        id: editId,
+        name: values.name,
+        price: values.price,
+        imageUrl: image,
+        rating: values.rating,
+        views: values.views,
+        category: values.category,
+      };
+      await editProducts(updatedProduct);
+      message.success("The product is edited");
+      close(false);
+    } catch (error) {
+      console.log(error);
+      message.error("Error while editing!")
+    }
   };
 
   return (
@@ -63,12 +85,7 @@ const UpdateProduct = () => {
         />
         <button className="absolute flex flex-col items-center justify-center w-full h-full opacity-0 group-hover:opacity-100 group-hover:bg-neutral-950/75 transition focus:outline-none"></button>
       </div>
-      <Form
-        className="flex flex-col gap-y-1"
-        // initialValues={editProduct}
-        onFinish={onFinish}
-        form={form}
-      >
+      <Form className="flex flex-col gap-y-1" onFinish={onFinish} form={form}>
         <Form.Item
           name="name"
           rules={[{ required: true, message: "Please fill in the input" }]}

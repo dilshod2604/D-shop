@@ -1,6 +1,7 @@
 "use client ";
 import { useSignUpMutation } from "@/redux/api/auth";
 import { IUser } from "@/types/sheme";
+import { message } from "antd";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import React, { ChangeEvent, useState } from "react";
