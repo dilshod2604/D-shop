@@ -1,30 +1,38 @@
 "use client";
 import {
   useAddFavotitesMutation,
+  useDeleteFavoritesMutation,
   useGetFavoritesByIdQuery,
 } from "@/redux/api/addFavorite";
 import { useGetMeQuery } from "@/redux/api/auth";
 import { message } from "antd";
+import { useRouter } from "next/navigation";
 import React, { FC } from "react";
 import { FaHeart, FaRegHeart } from "react-icons/fa";
 interface AddFavoritesProps {
   productId: string;
 }
 const AddFavorites: FC<AddFavoritesProps> = ({ productId }) => {
+  const router = useRouter();
   const { data: favoriteProduct } = useGetFavoritesByIdQuery(productId);
+  const [deleteFavorite] = useDeleteFavoritesMutation();
   const [addFavorite] = useAddFavotitesMutation();
   const { data: me } = useGetMeQuery();
   const addProdcutToFavorite = async () => {
     try {
-      const data = {
-        productId,
-        userId: me?.id!,
-      };
-      await addFavorite(data);
-      message.success("The pruduct is added to favorites");
+      if (!favoriteProduct?.isFavorite) {
+        const data = {
+          productId,
+          userId: me?.id!,
+        };
+        await addFavorite(data);                          
+        message.success("The pruduct is added to favorites"); 
+      } else {
+        await deleteFavorite(favoriteProduct.id);
+        message.success("The pruduct is deleted from favorites");
+      }
     } catch (error) {
       console.log(error);
-      message.error("Error while adding to Favorite");
     }
   };
 

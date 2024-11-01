@@ -1,6 +1,5 @@
 "use client";
 import { Skeleton } from "antd";
-import SkeletonAvatar from "antd/es/skeleton/Avatar";
 import React from "react";
 
 const DetailsSkeleton = () => {

@@ -60,7 +60,7 @@ interface IFavorites {
   productId: string;
 }
 interface IFavoriteProduct {
-  id: number;
+  id: string;
   isFavorite: boolean;
   productId: string;
   userId: number;

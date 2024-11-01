@@ -7,4 +7,6 @@ namespace ADDFAVORITE {
   type GetFavoritesByIdRequest = string;
   type GetFavoriteProductResponse = IFavoritesItems[];
   type GetFavoriteProductRequest = number;
+  type DeleteFavoriteResponse = void;
+  type DeleteFavoriteRequest = string;
 }
