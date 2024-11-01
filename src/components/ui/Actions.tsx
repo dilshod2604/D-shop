@@ -14,7 +14,7 @@ interface ActionsProps {
 }
 
 const Actions: FC<ActionsProps> = ({ className }) => {
-  const router = useRouter();
+  const router = useRouter(); 
   const { data: me } = useGetMeQuery();
   const userId = me?.id!;
 
