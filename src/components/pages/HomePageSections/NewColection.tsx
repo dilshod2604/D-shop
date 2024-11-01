@@ -1,6 +1,7 @@
 "use client";
 import ViewAllButton from "@/components/shared/ViewAllButton";
 import AddToCart from "@/components/ui/AddToCart";
+import CardsSkeleton from "@/components/ui/CardsSkeleton";
 import ProductActions from "@/components/ui/ProductActions";
 import Rating from "@/components/ui/Rating";
 import { useGetProductsQuery } from "@/redux/api/product";
@@ -9,7 +10,7 @@ import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 
 const NewColection = () => {
-  const { data: poducts } = useGetProductsQuery();
+  const { data: poducts,isLoading } = useGetProductsQuery();
   const [isEnter, setIsEnter] = useState<boolean>(false);
   const [curentIndex, setCurrentIndex] = useState<string>("");
   const router = useRouter();
@@ -21,7 +22,9 @@ const NewColection = () => {
     setIsEnter(false);
     setCurrentIndex("");
   };
-
+  if (isLoading) {
+    return <CardsSkeleton className="mt-5"/>;
+  }
   return (
     <section className="mt-5">
       <div className="container ">

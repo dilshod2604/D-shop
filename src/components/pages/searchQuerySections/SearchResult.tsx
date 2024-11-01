@@ -1,5 +1,6 @@
 "use client";
 import AddToCart from "@/components/ui/AddToCart";
+import CardsSkeleton from "@/components/ui/CardsSkeleton";
 import ProductActions from "@/components/ui/ProductActions";
 import Rating from "@/components/ui/Rating";
 import { useSearchProductsQuery } from "@/redux/api/search";
@@ -10,7 +11,7 @@ import React, { useState } from "react";
 const SearchResult = () => {
   const { searchQuery } = useParams();
   const decodeText = decodeURIComponent(searchQuery as string);
-  const { data: products } = useSearchProductsQuery(decodeText, {
+  const { data: products, isLoading } = useSearchProductsQuery(decodeText, {
     skip: !decodeText,
   });
 
@@ -26,6 +27,9 @@ const SearchResult = () => {
     setIsEnter(false);
     setCurrentIndex("");
   };
+  if (isLoading) {
+    return <CardsSkeleton className="mt-[100px]" />;
+  }
   return (
     <section className="mt-[100px]">
       <div className="container ">

@@ -1,9 +1,17 @@
 import { Skeleton } from "antd";
-import React from "react";
-
-const CardsSkeleton = () => {
+import React, { FC } from "react";
+import { twMerge } from "tailwind-merge";
+interface CardsSkeletonProps {
+  className?: string;
+}
+const CardsSkeleton: FC<CardsSkeletonProps> = ({ className }) => {
   return (
-    <div className="flex flex-wrap container gap-x-4 gap-y-4 mt-[100px] justify-center">
+    <div
+      className={twMerge(
+        `flex flex-wrap container gap-x-4 gap-y-4 justify-center`,
+        className
+      )}
+    >
       <div className="flex flex-col gap-y-2 rounded-md w-[250px] h-[300px] items-center bg-neutral-100 p-3">
         <Skeleton.Image active style={{ width: "150px", height: "150px" }} />
         <Skeleton.Input active style={{ width: "100%" }} />

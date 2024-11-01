@@ -8,9 +8,10 @@ import React, { useState } from "react";
 import NewColection from "./NewColection";
 import { useGetProductsQuery } from "@/redux/api/product";
 import Image from "next/image";
+import CardsSkeleton from "@/components/ui/CardsSkeleton";
 
 const ExploredProducts = () => {
-  const { data: poducts } = useGetProductsQuery();
+  const { data: poducts,isLoading } = useGetProductsQuery();
   const [isEnter, setIsEnter] = useState<boolean>(false);
   const [curentIndex, setCurrentIndex] = useState<string>("");
   const router = useRouter();
@@ -22,7 +23,9 @@ const ExploredProducts = () => {
     setIsEnter(false);
     setCurrentIndex("");
   };
-
+  if (isLoading) {
+    return <CardsSkeleton className="mt-[100px]" />;
+  }
   return (
     <section className="mt-[100px]">
       <div className="container ">

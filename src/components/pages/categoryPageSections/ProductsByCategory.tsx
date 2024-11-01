@@ -27,7 +27,7 @@ const ProductsByCategory = () => {
     setCurrentIndex("");
   };
   if (isLoading) {
-    return <CardsSkeleton />;
+    return <CardsSkeleton className="mt-[100px]" />;
   }
 
   return (

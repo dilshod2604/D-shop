@@ -1,15 +1,16 @@
 "use client";
 import AddToCart from "@/components/ui/AddToCart";
+import CardsSkeleton from "@/components/ui/CardsSkeleton";
 import ProductActions from "@/components/ui/ProductActions";
 import Rating from "@/components/ui/Rating";
 import { useGetProductsQuery } from "@/redux/api/product";
 import { useProductDetailsStore } from "@/store/useProductDitailsStore";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
-import React, { useState } from "react";
+import React, { useMemo, useState } from "react";
 
 const SmilarProducts = () => {
-  const { data: poducts } = useGetProductsQuery();
+  const { data: products, isLoading } = useGetProductsQuery();
   const [isEnter, setIsEnter] = useState<boolean>(false);
   const [curentIndex, setCurrentIndex] = useState<string>("");
   const { category } = useProductDetailsStore();
@@ -22,7 +23,13 @@ const SmilarProducts = () => {
     setIsEnter(false);
     setCurrentIndex("");
   };
-  const filtered = poducts?.filter((item, index) => item.category === category);
+  const filtered = useMemo(() => {
+    return products?.filter((item) => item.category === category);
+  }, [products, category]);
+
+  if (isLoading) {
+    return <CardsSkeleton className="mt-5" />;
+  }
   return (
     <section className="mt-5">
       <div className="container ">
