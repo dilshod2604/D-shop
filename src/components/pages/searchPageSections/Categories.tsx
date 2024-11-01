@@ -1,8 +1,10 @@
 "use client";
 import { categories } from "@/constants/links";
+import { useRouter } from "next/navigation";
 import React from "react";
 
 const Categories = () => {
+  const router = useRouter();
   return (
     <section className="mt-[100px]">
       <div className="container">
@@ -14,7 +16,8 @@ const Categories = () => {
             {categories.map((item, index) => (
               <div
                 key={index}
-                className="w-[150px] h-[150px] border rounded-md gap-y-5 flex flex-col items-center justify-center hover:bg-red-500 hover:text-white transition duration-300 "
+                className="w-[150px] h-[150px] border rounded-md gap-y-5 flex flex-col items-center justify-center hover:bg-red-500  hover:text-white transition-all duration-300 hover:scale-110 "
+                onClick={() => router.push(`/category/${item.name}`)}
               >
                 <item.icon size={50} />
                 <p>{item.name}</p>

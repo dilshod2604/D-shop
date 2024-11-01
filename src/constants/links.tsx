@@ -24,34 +24,36 @@ export const links: {
   },
 ];
 
-export const sideBarLinks: { name: string; href: string }[] = [
+export const sideBarLinks: { name: string; href: string; icon: IconType }[] = [
   {
-    name: "Electronics",
-    href: "/electronics",
+    name: "Phones",
+    href: "/category/Phones",
+    icon: GiSmartphone,
   },
   {
-    name: "Home & Lifestyle",
-    href: "/home-lifestyle",
+    name: "Computers",
+    href: "/category/Computers",
+    icon: HiOutlineDesktopComputer,
   },
   {
-    name: "Medicine",
-    href: "/medicine",
+    name: "Smart watch",
+    href: "/category/Smart watch",
+    icon: IoWatchOutline,
   },
   {
-    name: "Sports & Outdoor",
-    href: "/sports-outdoor",
+    name: "Camera",
+    href: "/category/Camera",
+    icon: FiCamera,
   },
   {
-    name: "Baby's & Toys",
-    href: "/baby's-toys",
+    name: "HeadPhones",
+    href: "/category/HeadPhones",
+    icon: SlEarphones,
   },
   {
-    name: "Groceries & Pets",
-    href: "/groceries-pets",
-  },
-  {
-    name: "Health & Beauty",
-    href: "/health-beauty",
+    name: "Caming",
+    href: "/category/Caming",
+    icon: LuGamepad,
   },
 ];
 

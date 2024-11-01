@@ -64,7 +64,7 @@ const ProductsByCategory = () => {
                     className="text-black truncate font-semibold hover:underline cursor-pointer"
                     onClick={() => router.push(`/products/${product.id}`)}
                   >
-                    {product.imageUrl}
+                    {product.name}
                   </p>
                   <span className="text-red-500 font-semibold flex items-center gap-x-1">
                     ${product.price}
