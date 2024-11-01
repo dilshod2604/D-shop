@@ -7,6 +7,7 @@ import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 import NewColection from "./NewColection";
 import { useGetProductsQuery } from "@/redux/api/product";
+import Image from "next/image";
 
 const ExploredProducts = () => {
   const { data: poducts } = useGetProductsQuery();
@@ -47,7 +48,7 @@ const ExploredProducts = () => {
                   onMouseEnter={() => onMouseEnter(product.id)}
                   onMouseLeave={() => onMouseLeave}
                 >
-                  <img
+                  <Image
                     src={product.imageUrl}
                     alt={product.name}
                     className="w-[150px]

@@ -2,6 +2,7 @@
 import Quantity from "@/components/ui/Quantity";
 import { useGetMeQuery } from "@/redux/api/auth";
 import { useGetCartProductsQuery } from "@/redux/api/cart";
+import Image from "next/image";
 import React from "react";
 
 const ProductList = () => {
@@ -26,7 +27,7 @@ const ProductList = () => {
               >
                 <div className="flex gap-x-4 items-center">
                   <div className="w-[50px] h-[50px] rounded-md">
-                    <img
+                    <Image
                       src={item.product.imageUrl}
                       alt="cover"
                       className="w-full h-full"

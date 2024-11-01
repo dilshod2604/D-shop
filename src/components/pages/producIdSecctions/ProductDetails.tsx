@@ -11,6 +11,7 @@ import Zoom from "react-medium-image-zoom";
 import "react-medium-image-zoom/dist/styles.css";
 import DetailsSkeleton from "@/components/ui/DetailsSkeleton";
 import AddFavorites from "@/components/shared/AddFavorites";
+import Image from "next/image";
 const ProductDetails = () => {
   const { productId } = useParams();
 
@@ -47,8 +48,8 @@ const ProductDetails = () => {
           <div className="flex flex-col">
             <div className="flex items-center justify-center overflow-hidden max-w-[300px] h-[400px]  rounded-md">
               <Zoom>
-                <img
-                  src={product?.imageUrl}
+                <Image
+                  src={product?.imageUrl!}
                   alt="cover"
                   className="w-full h-full"
                 />

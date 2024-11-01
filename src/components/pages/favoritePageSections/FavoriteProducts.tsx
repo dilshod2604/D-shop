@@ -2,6 +2,7 @@
 import InlineSkeleton from "@/components/ui/InlineSkeleton";
 import { useGetFavoriteProductsQuery } from "@/redux/api/addFavorite";
 import { useGetMeQuery } from "@/redux/api/auth";
+import Image from "next/image";
 import { useRouter } from "next/navigation";
 import React from "react";
 import { FaHeart, FaHeartBroken } from "react-icons/fa";
@@ -26,7 +27,7 @@ const FavoriteProducts = () => {
             >
               <div className="flex gap-x-4 items-center ">
                 <div className="w-[50px] h-[50px] rounded-md overflow-hidden">
-                  <img
+                  <Image
                     src={item.product.imageUrl}
                     alt=""
                     className="w-full h-full"

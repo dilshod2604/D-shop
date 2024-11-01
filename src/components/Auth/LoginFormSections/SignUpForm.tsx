@@ -2,6 +2,7 @@
 import { useSignUpMutation } from "@/redux/api/auth";
 import { IUser } from "@/types/sheme";
 import { message } from "antd";
+import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import React, { ChangeEvent, useState } from "react";
@@ -55,7 +56,7 @@ const SignUpForm = () => {
           onSubmit={handleSubmit(onSubmit)}
         >
           <div className="relative flex group items-center justify-center w-[150px] h-[150px] overflow-hidden rounded-full border  ">
-            <img src={image} className="w-full h-full" />
+            <Image src={image} className="w-full h-full" alt="avatar" />
             <input
               type="file"
               {...register("photo", { required: true })}
