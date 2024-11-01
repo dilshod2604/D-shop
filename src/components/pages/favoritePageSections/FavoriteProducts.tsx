@@ -30,7 +30,8 @@ const FavoriteProducts = () => {
                   <Image
                     src={item.product.imageUrl}
                     alt=""
-                    className="w-full h-full"
+                    width={50}
+                    height={50}
                   />
                 </div>
                 <h1

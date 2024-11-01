@@ -30,7 +30,8 @@ const ProductList = () => {
                     <Image
                       src={item.product.imageUrl}
                       alt="cover"
-                      className="w-full h-full"
+                      width={50}
+                      height={50}
                     />
                   </div>
                   <h1 className="text-black gont-semibold text-xl">

@@ -40,8 +40,8 @@ const NewColection = () => {
                   <Image
                     src={product.imageUrl}
                     alt={product.name}
-                    className="w-[150px]
-                  h-[150px]"
+                    width={150}
+                    height={150}
                     onClick={() => router.push(`/products/${product.id}`)}
                   />
                   <ProductActions />

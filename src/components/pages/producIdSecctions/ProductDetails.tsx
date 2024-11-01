@@ -2,7 +2,6 @@
 import { useGetProductsByIdQuery } from "@/redux/api/product";
 import { useParams } from "next/navigation";
 import React, { useEffect } from "react";
-import { FiPlus, FiMinus } from "react-icons/fi";
 import { Rate } from "antd";
 import { useProductDetailsStore } from "@/store/useProductDitailsStore";
 import { useAddProductToCartMutation } from "@/redux/api/cart";
@@ -12,6 +11,7 @@ import "react-medium-image-zoom/dist/styles.css";
 import DetailsSkeleton from "@/components/ui/DetailsSkeleton";
 import AddFavorites from "@/components/shared/AddFavorites";
 import Image from "next/image";
+import ProductQuantity from "@/components/ui/ProductQuantity";
 const ProductDetails = () => {
   const { productId } = useParams();
 
@@ -49,9 +49,11 @@ const ProductDetails = () => {
             <div className="flex items-center justify-center overflow-hidden max-w-[300px] h-[400px]  rounded-md">
               <Zoom>
                 <Image
-                  src={product?.imageUrl!}
+                  src={product?.imageUrl || "/path/to/placeholder/image.jpg"}
                   alt="cover"
                   className="w-full h-full"
+                  width={300}
+                  height={400}
                 />
               </Zoom>
             </div>
@@ -68,20 +70,7 @@ const ProductDetails = () => {
               </div>
             </div>
             <div className="flex items-center justify-between gap-x-4 ">
-              <div className="flex items-center border border-neutral-700 rounded-md">
-                <FiMinus
-                  size={40}
-                  className="text-black px-2 hover:bg-red-500 hover:text-white traansition border-r border-neutral-700"
-                />
-                <input
-                  type="text"
-                  className="bg-neutral-100  w-[50px] py-2 focus:outline-none px-2 "
-                />
-                <FiPlus
-                  size={40}
-                  className="text-black px-2 hover:bg-red-500 hover:text-white traansition border-l border-neutral-700"
-                />
-              </div>
+             <ProductQuantity/>
               <button
                 className="bg-red-500 px-4 py-2 flex items-center justify-center text-white font-bold hover:opacity-75 hover:scale-110 rounded-md"
                 onClick={AddToCart}

@@ -45,8 +45,8 @@ const SmilarProducts = () => {
                   <Image
                     src={product.imageUrl}
                     alt={product.name}
-                    className="w-[150px]
-                h-[150px]"
+                    width={150}
+                    height={150}
                     onClick={() => router.push(`/products/${product.id}`)}
                   />
                   <ProductActions />
@@ -57,7 +57,7 @@ const SmilarProducts = () => {
                     className="text-black truncate font-semibold hover:underline cursor-pointer"
                     onClick={() => router.push(`/products/${product.id}`)}
                   >
-                    {product.name }
+                    {product.name}
                   </p>
                   <span className="text-red-500 font-semibold flex items-center gap-x-1">
                     ${product.price}
