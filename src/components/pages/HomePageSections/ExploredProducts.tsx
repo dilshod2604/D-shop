@@ -55,7 +55,7 @@ const ExploredProducts = () => {
                     height={150}
                     onClick={() => router.push(`/products/${product.id}`)}
                   />
-                  <ProductActions />
+                  <ProductActions productId={product.id} />
                   {curentIndex === product.id && <AddToCart />}
                 </div>
                 <div className="flex flex-col  gap-y-2 p-2">
