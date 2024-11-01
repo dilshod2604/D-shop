@@ -56,7 +56,7 @@ const CreateProduct = () => {
     }
   };
   return (
-    <div className="flex gap-x-5 justify-center">
+    <div className="flex gap-x-5 justify-center max-sm:flex-col max-sm:items-center">
       <div className="relative flex group items-center justify-center w-[200px] h-[300px] overflow-hidden rounded-md border">
         {image ? (
           <img src={image} className="w-full h-full" />

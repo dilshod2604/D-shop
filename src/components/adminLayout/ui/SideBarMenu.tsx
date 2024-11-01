@@ -8,7 +8,7 @@ const SideBarMenu = () => {
   const pathname = usePathname();
   return (
     <div className="flex flex-col gap-y-2 mt-[30px] ">
-      <h1 className="text-white font-bold text-lg py-2 border-b border-neutral-400">
+      <h1 className="text-white font-bold text-lg py-2 border-b border-neutral-400 max-sm:hidden">
         Menu
       </h1>
       <ul className="flex flex-col gap-y-2">
@@ -20,7 +20,7 @@ const SideBarMenu = () => {
             >
               <Link href={link.href} className="flex items-center gap-x-3 ">
                 <link.icon size={25} className="text-white " />
-                <p className="text-white font-semibold">{link.name}</p>
+                <p className="text-white font-semibold max-sm:hidden">{link.name}</p>
               </Link>
             </li>
           ) : (
@@ -30,7 +30,7 @@ const SideBarMenu = () => {
             >
               <Link href={link.href} className="flex items-center gap-x-3 ">
                 <link.icon size={25} className="text-neutral-300 " />
-                <p className="text-neutral-300 font-semibold">{link.name}</p>
+                <p className="text-neutral-300 font-semibold max-sm:hidden">{link.name}</p>
               </Link>
             </li>
           )

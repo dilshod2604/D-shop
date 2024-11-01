@@ -2,10 +2,13 @@
 import React, { useState } from "react";
 import { useGetProductsQuery } from "@/redux/api/product";
 import FloatMenu from "../ui/FloatMenu";
+import CardsSkeleton from "@/components/ui/CardsSkeleton";
 
 const ProductsList = () => {
-  const { data: products } = useGetProductsQuery();
-
+  const { data: products, isLoading } = useGetProductsQuery();
+  if (isLoading) {
+    return <CardsSkeleton />;
+  }
   return (
     <section>
       <div className="px-5 w-full ">
