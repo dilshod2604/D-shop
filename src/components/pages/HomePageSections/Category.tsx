@@ -1,8 +1,10 @@
 "use client";
-import React from "react";
+import React, { useState } from "react";
 import { categories } from "../../../constants/links";
+import { useRouter } from "next/navigation";
 
 const Category = () => {
+  const router = useRouter();
   return (
     <section className="mt-[100px]">
       <div className="container">
@@ -18,7 +20,8 @@ const Category = () => {
             {categories.map((item, index) => (
               <div
                 key={index}
-                className="w-[150px] h-[150px] border rounded-md gap-y-5 flex flex-col items-center justify-center hover:bg-red-500 hover:text-white transition duration-300 "
+                className="w-[150px] h-[150px] border rounded-md gap-y-5 flex flex-col items-center justify-center hover:bg-red-500 hover:text-white duration-300 cursor-pointer hover:scale-110 transition-all"
+                onClick={() => router.push(`/category/${item.name}`)}
               >
                 <item.icon size={50} />
                 <p>{item.name}</p>

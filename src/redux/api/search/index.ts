@@ -9,6 +9,14 @@ const api = index.injectEndpoints({
       query: (query) => `/api/product/search?query=${query}`,
       providesTags: ["search"],
     }),
+    searchByCategory: build.query<
+      SEARCH.SearchProdctsByCategoryResponse,
+      SEARCH.SearchProdctByCategorysRequest
+    >({
+      query: (query) => `/api/product/category?query=${query}`,
+      providesTags: ["search"],
+    }),
   }),
 });
-export const { useSearchProductsQuery } = api;
+export const { useSearchProductsQuery, useSearchByCategoryQuery } = api;
+0
