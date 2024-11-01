@@ -1,11 +1,14 @@
 "use client";
 import InlineSkeleton from "@/components/ui/InlineSkeleton";
-import { useGetFavoriteProductsQuery } from "@/redux/api/addFavorite";
+import {
+  useDeleteFavoritesMutation,
+  useGetFavoriteProductsQuery,
+} from "@/redux/api/addFavorite";
 import { useGetMeQuery } from "@/redux/api/auth";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import React from "react";
-import { FaHeart, FaHeartBroken } from "react-icons/fa";
+import { MdDelete } from "react-icons/md";
 
 const FavoriteProducts = () => {
   const router = useRouter();
@@ -13,6 +16,14 @@ const FavoriteProducts = () => {
   const { data: favorites, isLoading } = useGetFavoriteProductsQuery(me?.id!, {
     skip: !me?.id,
   });
+  const [deleteFavorite] = useDeleteFavoritesMutation();
+  const deleteFavoriteProduct = async (id: string) => {
+    try {
+      await deleteFavorite(id);
+    } catch (error) {
+      console.log(error);
+    }
+  };
   if (isLoading) {
     return <InlineSkeleton />;
   }
@@ -20,9 +31,9 @@ const FavoriteProducts = () => {
     <section className="mt-[100px]">
       <div className="container">
         <div className="flex flex-col gap-y-3">
-          {favorites?.map((item, index) => (
+          {favorites?.map((item) => (
             <div
-              key={index}
+              key={item.id}
               className="flex items-center  justify-between px-4 py-2 rounded-md bg-neutral-50 max-sm:flex-col max-sm:items-start"
             >
               <div className="flex gap-x-4 items-center ">
@@ -41,9 +52,10 @@ const FavoriteProducts = () => {
                   {item.product.name}
                 </h1>
               </div>
-              <FaHeartBroken
+              <MdDelete
                 size={40}
                 className="text-red-500   rounded-md p-2 hover:scale-110 transition cursor-pointer"
+                onClick={() => deleteFavoriteProduct(item.id)}
               />
             </div>
           ))}
