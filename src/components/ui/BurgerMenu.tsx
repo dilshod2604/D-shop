@@ -1,46 +1,69 @@
-"use client";
-import { links } from "@/constants/links";
-import { useGetMeQuery } from "@/redux/api/auth";
-import Link from "next/link";
-import { usePathname } from "next/navigation";
+
 import React from "react";
+import Button from "@mui/material/Button";
+import Menu from "@mui/material/Menu";
+import MenuItem from "@mui/material/MenuItem";
+import BurgerButton from "./BurgerButton";
+import { useGetMeQuery } from "@/redux/api/auth";
+import { usePathname } from "next/navigation";
+import { links } from "@/constants/links";
+import Link from "next/link";
 
 const BurgerMenu = () => {
   const { data: me } = useGetMeQuery();
   const pathName = usePathname();
+  const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
+  const open = Boolean(anchorEl);
+  const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+    setAnchorEl(event.currentTarget);
+  };
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+
   return (
-    <div className="flex flex-col items-start">
-      <ul className="flex  flex-col items-start gap-y-5  text-black ">
+    <div>
+      <BurgerButton handleClick={handleClick} open={open} />
+
+      <Menu
+        id="basic-menu"
+        anchorEl={anchorEl}
+        open={open}
+        onClose={handleClose}
+        MenuListProps={{
+          "aria-labelledby": "basic-button",
+        }}
+      >
         {links.map((link, index) => (
-          <li key={index}>
+          <MenuItem key={index}>
             {pathName === link.href ? (
               <Link
                 href={link.href}
-                className="text-white font-bold pb-2 underline transition"
+                className="text-black font-bold pb-2 underline  transition"
               >
                 {link.name}
               </Link>
             ) : (
               <Link
                 href={link.href}
-                className="text-white font-normal transition   "
+                className="text-black font-normal transition   "
               >
                 {link.name}
               </Link>
             )}
-          </li>
+          </MenuItem>
         ))}
         {!me?.email && (
-          <li>
+          <MenuItem>
             <Link
               href={"/auth/sign-up"}
-              className="text-white font-normal transition   "
+              className="text-black font-normal transition   "
             >
               Sign up
             </Link>
-          </li>
+          </MenuItem>
         )}
-      </ul>
+      </Menu>
     </div>
   );
 };
