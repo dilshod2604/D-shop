@@ -5,7 +5,6 @@ import SearchTrack from "../ui/SearchTrack";
 import Actions from "../ui/Actions";
 import Image from "next/image";
 import logo from "../../assets/logo.png";
-import Categoryies from "../ui/Categoryies";
 import BurgerButton from "../ui/BurgerButton";
 import { useBurgerStore } from "@/store/useBurgerStore";
 import Modal from "../shared/Modal";
@@ -18,11 +17,11 @@ import { useProfileStore } from "@/store/useProfileStore";
 import ProfileMenu from "../ui/ProfileMenu";
 import SearchModal from "../ui/SearchModal";
 import ActionsMenu from "../ui/ActionsMenu";
+import CategoriesMenu from "../ui/CategoriesMenu";
 
 const Header = () => {
   const router = useRouter();
   const { isOpen } = useBurgerStore();
-  const { isOpen: open } = useActionsStore();
   const { isShow } = useProfileStore();
 
   const { data: me } = useGetMeQuery();
@@ -45,7 +44,7 @@ const Header = () => {
             <SearchTrack />
             <Actions />
             <ActionsMenu />
-            <Categoryies />
+            <CategoriesMenu />
             {me?.email && <ProfileButton image={me.photo!} />}
             <BurgerButton />
           </div>
