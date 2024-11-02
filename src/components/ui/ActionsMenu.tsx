@@ -27,7 +27,7 @@ export default function ActionsMenu() {
   const openModal = () => setIsOpen(true);
 
   return (
-    <div>
+    <div className="hidden max-sm:flex">
       <IconButton
         id="basic-button"
         aria-controls={open ? "basic-menu" : undefined}

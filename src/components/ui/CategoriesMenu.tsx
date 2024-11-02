@@ -1,6 +1,5 @@
 "use client";
 import React from "react";
-import Button from "@mui/material/Button";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import { TbLayoutList, TbLayoutListFilled } from "react-icons/tb";
@@ -19,7 +18,7 @@ const CategoriesMenu = () => {
   };
 
   return (
-    <div>
+    <div className="hidden max-sm:flex">
       <IconButton
         id="basic-button"
         aria-controls={open ? "basic-menu" : undefined}

@@ -1,4 +1,3 @@
-
 import React from "react";
 import Button from "@mui/material/Button";
 import Menu from "@mui/material/Menu";
@@ -22,7 +21,7 @@ const BurgerMenu = () => {
   };
 
   return (
-    <div>
+    <div className="hidden max-lg:flex">
       <BurgerButton handleClick={handleClick} open={open} />
 
       <Menu

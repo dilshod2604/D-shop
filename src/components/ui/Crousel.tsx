@@ -29,9 +29,9 @@ const Crousel = () => {
                 {item.title}
               </h1>
               <Link
-                href="#"
+                href="/new"
                 className="text-white flex gap-x-4 items-center hover:underline transitions"
-              > 
+              >
                 Shop Now <FaArrowRight className="tetx-white" />
               </Link>
             </div>
@@ -48,4 +48,3 @@ const Crousel = () => {
 };
 
 export default Crousel;
-  

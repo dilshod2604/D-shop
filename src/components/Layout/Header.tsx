@@ -31,7 +31,7 @@ const Header = () => {
             </span>
           </div>
           <Navbar />
-          <div className="flex items-center">
+          <div className="flex items-center gap-x-4   ">
             <SearchTrack />
             <Actions />
             <ActionsMenu />
