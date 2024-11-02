@@ -6,6 +6,7 @@ import MenuItem from "@mui/material/MenuItem";
 import { TbLayoutList, TbLayoutListFilled } from "react-icons/tb";
 import Link from "next/link";
 import { sideBarLinks } from "@/constants/links";
+import { IconButton } from "@mui/material";
 
 const CategoriesMenu = () => {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
@@ -19,7 +20,7 @@ const CategoriesMenu = () => {
 
   return (
     <div>
-      <Button
+      <IconButton
         id="basic-button"
         aria-controls={open ? "basic-menu" : undefined}
         aria-haspopup="true"
@@ -31,7 +32,7 @@ const CategoriesMenu = () => {
         ) : (
           <TbLayoutList size={20} className="text-black" />
         )}
-      </Button>
+      </IconButton>
       <Menu
         id="basic-menu"
         anchorEl={anchorEl}

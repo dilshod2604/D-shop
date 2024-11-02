@@ -9,6 +9,7 @@ import { GrCart } from "react-icons/gr";
 import { IoSearch } from "react-icons/io5";
 import { useSearchModal } from "@/store/useSearchModal";
 import { useRouter } from "next/navigation";
+import { IconButton } from "@mui/material";
 
 export default function ActionsMenu() {
   const { setIsOpen } = useSearchModal();
@@ -27,7 +28,7 @@ export default function ActionsMenu() {
 
   return (
     <div>
-      <Button
+      <IconButton
         id="basic-button"
         aria-controls={open ? "basic-menu" : undefined}
         aria-haspopup="true"
@@ -39,7 +40,7 @@ export default function ActionsMenu() {
         ) : (
           <RiAppsLine size={25} className="text-black" />
         )}
-      </Button>
+      </IconButton>
       <Menu
         id="basic-menu"
         anchorEl={anchorEl}
