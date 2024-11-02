@@ -6,12 +6,9 @@ import Actions from "../ui/Actions";
 import Image from "next/image";
 import logo from "../../assets/logo.png";
 
-import Modal from "../shared/Modal";
 import BurgerMenu from "../ui/BurgerMenu";
 import { useGetMeQuery } from "@/redux/api/auth";
-import ProfileButton from "../ui/ProfileButton";
 import { useRouter } from "next/navigation";
-import { useProfileStore } from "@/store/useProfileStore";
 import ProfileMenu from "../ui/ProfileMenu";
 import SearchModal from "../ui/SearchModal";
 import ActionsMenu from "../ui/ActionsMenu";
@@ -19,9 +16,7 @@ import CategoriesMenu from "../ui/CategoriesMenu";
 
 const Header = () => {
   const router = useRouter();
-  const { isShow } = useProfileStore();
   const { data: me } = useGetMeQuery();
-
   return (
     <header className="fixed top-0 left-0 w-full z-50 bg-neutral-100">
       <div className="container">
@@ -41,15 +36,9 @@ const Header = () => {
             <Actions />
             <ActionsMenu />
             <CategoriesMenu />
-            {me?.email && <ProfileButton image={me.photo!} />}
+            {me?.email && <ProfileMenu />}
             <BurgerMenu />
           </div>
-
-          {isShow && (
-            <Modal className="right-[170px] top-[70px] z-50 bg-neutral-800 px-[30px] max-2xl:right-[20px] max-lg:right-[10px] ">
-              <ProfileMenu />
-            </Modal>
-          )}
           <SearchModal />
         </div>
       </div>
