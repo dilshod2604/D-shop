@@ -37,7 +37,7 @@ const api = index.injectEndpoints({
           method: "DELETE",
         };
       },
-      invalidatesTags: ["cart"],
+      // invalidatesTags: ["cart"],
       async onQueryStarted(id, { dispatch, queryFulfilled }) {
         if (id === undefined) return;
 
