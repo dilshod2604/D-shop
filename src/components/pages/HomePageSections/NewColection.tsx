@@ -48,7 +48,7 @@ const NewColection = () => {
                     onClick={() => router.push(`/products/${product.id}`)}
                   />
                   <ProductActions productId={product.id} />
-                  {curentIndex === product.id && <AddToCart />}
+                  {curentIndex === product.id && <AddToCart productId={product.id} />}
                   <span className="absolute px-2 py-[2px] flex items-center justify-center rounded-md bg-green-500  top-2 left-2">
                     <p className="text-white font-semibold">New</p>
                   </span>

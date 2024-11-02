@@ -53,7 +53,7 @@ const SearchResult = () => {
                     onClick={() => router.push(`/products/${product.id}`)}
                   />
                   <ProductActions productId={product.id} />
-                  {curentIndex === product.id && <AddToCart />}
+                  {curentIndex === product.id && <AddToCart productId={product.id} />}
                 </div>
                 <div className="flex flex-col  gap-y-2 p-2">
                   <p

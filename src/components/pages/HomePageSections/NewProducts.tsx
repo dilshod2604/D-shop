@@ -15,6 +15,8 @@ const NewProducts = () => {
   const [curentIndex, setCurrentIndex] = useState<string>("");
   const router = useRouter();
 
+  
+
   const onMouseEnter = (id: string) => {
     setIsEnter(true);
     setCurrentIndex(id);
@@ -23,6 +25,7 @@ const NewProducts = () => {
     setIsEnter(false);
     setCurrentIndex("");
   };
+
   if (isLoading) {
     return <CardsSkeleton className="mt-[100px]" />;
   }
@@ -53,8 +56,8 @@ const NewProducts = () => {
                     onClick={() => router.push(`/products/${product.id}`)}
                   />
                   <ProductActions productId={product.id} />
-                  {curentIndex === product.id && <AddToCart />}
-                </div>
+                  {curentIndex === product.id && <AddToCart productId={product.id} />}
+                </div> 
                 <div className="flex flex-col  gap-y-2 p-2">
                   <p
                     className="text-black truncate font-semibold hover:underline cursor-pointer"
