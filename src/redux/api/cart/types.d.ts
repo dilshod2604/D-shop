@@ -5,4 +5,7 @@ namespace CART {
   type AddCartProductRequest = IAddCart;
   type GetCartProductResponse = ICartItem[];
   type GetCartProductRequest = number;
+
+  type deleteCartItemResponse = void;
+  type deleteCartItemRequest = string;
 }

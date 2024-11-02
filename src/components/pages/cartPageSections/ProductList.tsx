@@ -1,13 +1,19 @@
 "use client";
+import InlineSkeleton from "@/components/ui/InlineSkeleton";
 import Quantity from "@/components/ui/Quantity";
 import { useGetMeQuery } from "@/redux/api/auth";
-import { useGetCartProductsQuery } from "@/redux/api/cart";
+import {
+  useDeleteCartItemMutation,
+  useGetCartProductsQuery,
+} from "@/redux/api/cart";
 import Image from "next/image";
 import React from "react";
+import { CgKey } from "react-icons/cg";
+import { MdDelete } from "react-icons/md";
 
 const ProductList = () => {
   const { data: me, isLoading: meLoading, error: meError } = useGetMeQuery();
-
+  const [deleteCartItem] = useDeleteCartItemMutation();
   const {
     data: cartData,
     isLoading: cartLoading,
@@ -15,8 +21,20 @@ const ProductList = () => {
   } = useGetCartProductsQuery(me?.id!, {
     skip: !me?.id,
   });
+
+  //deleteCartItem
+  const deleteCartProducts = async (id: string) => {
+    try {
+      await deleteCartItem(id);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  if (cartLoading) {
+    return <InlineSkeleton />;
+  }
   return (
-    <section>
+    <section className="mt-[100px]">
       <div className="container">
         <div className="flex flex-col gap-y-4">
           <div className="flex flex-col gap-y-2 w-full">
@@ -43,6 +61,11 @@ const ProductList = () => {
                   <p className="text-green-700 font-bold ">
                     ${item.product.price * item.quantity}
                   </p>
+                  <MdDelete
+                    size={25}
+                    className="text-black hover:text-red-500 hover:scale-110 transition-all"
+                    onClick={() => deleteCartProducts(item.id)}
+                  />
                 </div>
               </div>
             ))}
